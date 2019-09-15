@@ -1,5 +1,7 @@
 #include "ft_printf.h"
 #include <stdarg.h>
+#include <stdlib.h>
+
 
 void	parse_param_index(int *index,char **conv)
 {
@@ -125,13 +127,18 @@ void	parse_length(t_conv_spec *conv_spec,char **conv)
 char	*parse_conversion(char *conv_str, va_list *ap)
 {
 	t_conv_spec	conv_spec;
-	int			is_positional;
+	static int	is_positional;
 	int			ret;
 
 	ret = 0;
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
 	conv_str++;
 	parse_param_index(&conv_spec.param_index, &conv_str);
+	if (is_positional == UNDETERMINED)
+	{
+		is_positional =  conv_spec.param_index ? POS_MODE : SEQ_MODE;
+
+	}
 	parse_flags(&conv_spec, &conv_str);
 	parse_width(&conv_spec, &conv_str);
 	parse_precision(&conv_spec, &conv_str);
@@ -139,9 +146,8 @@ char	*parse_conversion(char *conv_str, va_list *ap)
 	if (is_in_str(*conv_str, "cspdiouxXf%"))
 	{
 		conv_spec.conv_char = *conv_str;
-		(conv_functions[*conv_str++])(&conv_spec, ap);
-		return (conv_str);
+		return ((conv_functions[*conv_str++])(&conv_spec, ap));
 	}
 	else
-		return (NULL);
+ 		return (-1);
 }
