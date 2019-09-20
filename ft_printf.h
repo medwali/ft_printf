@@ -1,5 +1,9 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
+#include "../libft/libft.h"
 
 # define FLAG_ZERO  1U
 # define FLAG_HASH  2U
@@ -33,26 +37,64 @@ typedef struct
 	char									conv_char;
 }											t_conv_spec;
 
-typedef struct 
-{
-	enum 
-	{
-		S_INT = 1,
-		LLS_INT,
-		DBL,
-		L_DBL
-	} e_type;
-	union
-	{
-		int s_int;
-		long long int lls_int;
-		double dbl;
-		long double l_dbl;
-	} u_value;
-
-} t_pos_param;
+int parse_conversion(char **conv_str, va_list *ap);
+int	is_in_str(int c, char *str);
+int	conv_d(t_conv_spec *conv_spec, va_list *ap);
+int ft_printf(char *format, ...);
 
 
-void (*const conv_functions[256])(t_conv_spec*,va_list*);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int (*const conv_functions[256])(t_conv_spec*,va_list*);
 
 #endif

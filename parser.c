@@ -1,6 +1,4 @@
 #include "ft_printf.h"
-#include <stdarg.h>
-#include <stdlib.h>
 
 
 void	parse_param_index(int *index,char **conv)
@@ -124,30 +122,25 @@ void	parse_length(t_conv_spec *conv_spec,char **conv)
 	}
 }
 
-char	*parse_conversion(char *conv_str, va_list *ap)
+int		parse_conversion(char **conv_str, va_list *ap)
 {
 	t_conv_spec	conv_spec;
-	static int	is_positional;
-	int			ret;
+	char		*c_str;
 
-	ret = 0;
+	c_str = *conv_str;
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
-	conv_str++;
-	parse_param_index(&conv_spec.param_index, &conv_str);
-	if (is_positional == UNDETERMINED)
+	c_str++;
+	parse_param_index(&conv_spec.param_index, &c_str);
+	parse_flags(&conv_spec, &c_str);
+	parse_width(&conv_spec, &c_str);
+	parse_precision(&conv_spec, &c_str);
+	parse_length(&conv_spec, &c_str);
+	if (is_in_str(*c_str, "cspdiouxXf%"))
 	{
-		is_positional =  conv_spec.param_index ? POS_MODE : SEQ_MODE;
-
-	}
-	parse_flags(&conv_spec, &conv_str);
-	parse_width(&conv_spec, &conv_str);
-	parse_precision(&conv_spec, &conv_str);
-	parse_length(&conv_spec, &conv_str);
-	if (is_in_str(*conv_str, "cspdiouxXf%"))
-	{
-		conv_spec.conv_char = *conv_str;
-		return ((conv_functions[*conv_str++])(&conv_spec, ap));
+		conv_spec.conv_char = *c_str;
+		*conv_str = c_str;
+		return ((conv_functions[*(*conv_str)++])(&conv_spec, ap));
 	}
 	else
- 		return (-1);
+ 		return (0);
 }
