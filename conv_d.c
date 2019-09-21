@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/21 23:08:10 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/21 23:53:51 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	conv_d(t_conv_spec *conv_spec, va_list *ap)
 	char			*s;
 	int				i;
 
-	// retrive width and precision
 	if (conv_spec->width.is_param)
 		conv_spec->width.value = va_arg(*ap, int);
 	if (conv_spec->precision.is_param)
