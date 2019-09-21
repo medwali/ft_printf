@@ -1,23 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/09/21 23:09:17 by mel-idri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 
-void	parse_param_index(int *index,char **conv)
-{
-	int i;
-
-	i = 0;
-	if (IS_DIGIT((*conv)[i]))
-		++i;
-	else
-		return ;
-	while (IS_DIGIT((*conv)[i]))
-		i++;
-	if ((*conv)[i] == '$')
-	{
-		*index = ft_atoi(*conv);
-		*conv += i;
-	}
-}
 
 void	parse_flags(t_conv_spec *conv_spec,char **conv)
 {
@@ -51,7 +46,6 @@ void	parse_width(t_conv_spec *conv_spec,char **conv)
 		}
 		else if (**conv == '*' && IS_DIGIT(*((*conv) + 1)))
 		{
-			conv_spec->width.param_index = ft_atoi(++(*conv));
 			conv_spec->width.is_param = 1;
 			while (IS_DIGIT(**conv))
 				(*conv)++;
@@ -79,7 +73,6 @@ void	parse_precision(t_conv_spec *conv_spec,char **conv)
 		}
 		else if (**conv == '*' && IS_DIGIT(*((*conv) + 1)))
 		{
-			conv_spec->precision.param_index = ft_atoi(++(*conv));
 			conv_spec->precision.is_param = 1;
 			while (IS_DIGIT(**conv))
 				(*conv)++;
@@ -130,7 +123,6 @@ int		parse_conversion(char **conv_str, va_list *ap)
 	c_str = *conv_str;
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
 	c_str++;
-	parse_param_index(&conv_spec.param_index, &c_str);
 	parse_flags(&conv_spec, &c_str);
 	parse_width(&conv_spec, &c_str);
 	parse_precision(&conv_spec, &c_str);
@@ -139,7 +131,7 @@ int		parse_conversion(char **conv_str, va_list *ap)
 	{
 		conv_spec.conv_char = *c_str;
 		*conv_str = c_str;
-		return ((conv_functions[*(*conv_str)++])(&conv_spec, ap));
+		return (get_conv_function(*(*conv_str)++)(&conv_spec, ap));
 	}
 	else
  		return (0);
