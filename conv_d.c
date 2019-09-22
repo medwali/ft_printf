@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 23:31:31 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/23 00:17:28 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ int	conv_d(t_conv_spec *conv_spec, va_list *ap)
     ft_putunbr(ABS(nbr));
     if (conv_spec->flags & FLAG_MINUS)
         ft_putnchar(' ', spaces);
-	return (0);
+	return (nbr_len + spaces + zeros + (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
 }
