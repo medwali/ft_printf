@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/21 23:10:35 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/22 21:34:32 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,13 +91,16 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-libftprintf_libftobj : $(LIBFTOBJ)
-	make -C libft objs
 
-$(NAME): $(OBJ) libftprintf_libftobj
+ 
+
+$(NAME): $(OBJ) $(LIBFTOBJ)
 	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
 
-main: main.c $(NAME)
+$(LIBFTOBJ):
+	make -C libft objs
+
+main: main.c $(NAME) 
 	gcc -o main main.c $(NAME)
 
 clean:
@@ -110,4 +113,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all fclean re clean libftprintf_libftobj
+.PHONY: all fclean re clean 

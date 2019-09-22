@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 18:54:50 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/21 22:58:51 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/22 21:33:04 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,12 +83,7 @@ SRC =	ft_atoi.c \
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
-
-$(NAME): objs
-	q
-
- : $(OBJ)
+objs: $(OBJ)
 
 clean:
 	/bin/rm -f *.o
