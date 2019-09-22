@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   digit_len.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 00:05:39 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 00:07:22 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:27:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	digit_len(int n)
+int	digit_len(long long n)
 {
 	int i;
 
