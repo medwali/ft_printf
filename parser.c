@@ -6,13 +6,11 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/21 23:09:17 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/22 23:46:48 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 void	parse_flags(t_conv_spec *conv_spec,char **conv)
 {
@@ -34,54 +32,42 @@ void	parse_flags(t_conv_spec *conv_spec,char **conv)
 			return ;
 		(*conv)++;
 	}
+	if (conv_spec->flags & FLAG_MINUS && conv_spec->flags & FLAG_ZERO)
+		conv_spec->flags ^= FLAG_ZERO;
+	if (conv_spec->flags & FLAG_PLUS && conv_spec->flags & FLAG_SPACE)
+		conv_spec->flags ^= FLAG_SPACE;
 }
 
-void	parse_width(t_conv_spec *conv_spec,char **conv)
+void	parse_width(t_conv_spec *conv_spec,char **conv, va_list *ap)
 {
 		if ('1' <= **conv && **conv <= '9')
 		{
-			conv_spec->width.value = ft_atoi(*conv);
+			conv_spec->width = ft_atoi(*conv);
 			while (IS_DIGIT(**conv))
-				(*conv)++;
-		}
-		else if (**conv == '*' && IS_DIGIT(*((*conv) + 1)))
-		{
-			conv_spec->width.is_param = 1;
-			while (IS_DIGIT(**conv))
-				(*conv)++;
-			if (**conv == '$')
 				(*conv)++;
 		}
 		else if (**conv == '*')
 		{
-			conv_spec->width.is_param = 1;
+			conv_spec->width = va_arg(*ap, int);
 			(*conv)++;
 		}
 }
 
-void	parse_precision(t_conv_spec *conv_spec,char **conv)
+void	parse_precision(t_conv_spec *conv_spec,char **conv, va_list *ap)
 {
 		if (**conv == '.')
 			(*conv)++;
 		else
 			return ;
-		if ('0' <= **conv && **conv <= '9')
+		if (IS_DIGIT(**conv))
 		{
-			conv_spec->precision.value = ft_atoi(*conv);
+			conv_spec->precision = ft_atoi(*conv);
 			while (IS_DIGIT(**conv))
-				(*conv)++;
-		}
-		else if (**conv == '*' && IS_DIGIT(*((*conv) + 1)))
-		{
-			conv_spec->precision.is_param = 1;
-			while (IS_DIGIT(**conv))
-				(*conv)++;
-			if (**conv == '$')
 				(*conv)++;
 		}
 		else if (**conv == '*')
 		{
-			conv_spec->precision.is_param = 1;
+			conv_spec->precision = va_arg(*ap, int);
 			(*conv)++;
 		}
 }
@@ -124,8 +110,8 @@ int		parse_conversion(char **conv_str, va_list *ap)
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
 	c_str++;
 	parse_flags(&conv_spec, &c_str);
-	parse_width(&conv_spec, &c_str);
-	parse_precision(&conv_spec, &c_str);
+	parse_width(&conv_spec, &c_str, ap);
+	parse_precision(&conv_spec, &c_str, ap);
 	parse_length(&conv_spec, &c_str);
 	if (is_in_str(*c_str, "cspdiouxXf%"))
 	{
