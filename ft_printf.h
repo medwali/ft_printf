@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/21 23:49:02 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/22 23:24:30 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define FLAG_MINUS 16U
 #define FLAG_QUOTE 32U
 #define IS_DIGIT(x) '0' <= x && x <= '9'
+#define ABS(number) number > 0 ? number : (-1) * number
 
 typedef enum
 {
@@ -43,6 +44,7 @@ typedef struct
 	} width;
 	struct
 	{
+        int isset;
 		int is_param;
 		int value;
 	} precision;
