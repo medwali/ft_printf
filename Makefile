@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 14:16:29 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/09/23 16:55:08 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,7 @@ clean:
 fclean: clean
 	make -C libft fclean
 	rm -f $(NAME)
+	rm -f conv_d_test
 
 re: fclean all
 
