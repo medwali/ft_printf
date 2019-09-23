@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 00:07:20 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/22 22:05:19 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstsearch(t_list *lst, int (*f)(t_list *l));
 size_t				ft_strichr(const char *s, int c);
 void				ft_strrev(char *s);
-int					digit_len(int n);
+int					digit_len(long long int n);
+void				ft_putnchar(char c, int n)
 
 
 #endif
