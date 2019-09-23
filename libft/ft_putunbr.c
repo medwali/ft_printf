@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnchar.c                                      :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 19:47:09 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 04:32:11 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/04/04 15:47:04 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/09/22 23:22:28 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnchar(char c, int n)
+void	ft_putunbr(unsigned long long n)
 {
-	while (n-- > 0)
-		write(1, &c, 1);
+	if (n / 10)
+		ft_putunbr(n / 10);
+	ft_putchar(n % 10 + '0');
 }

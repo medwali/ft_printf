@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnchar.c                                      :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 19:47:09 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 04:32:11 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/09/22 21:22:23 by ylagtab           #+#    #+#             */
+/*   Updated: 2019/09/22 21:23:40 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnchar(char c, int n)
+int     ft_max(int nbr1, int nbr2)
 {
-	while (n-- > 0)
-		write(1, &c, 1);
+    return (nbr1 > nbr2 ? nbr1 : nbr2);
 }

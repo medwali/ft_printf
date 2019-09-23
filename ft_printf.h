@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 01:17:22 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/23 04:34:51 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define FLAG_MINUS 16U
 #define FLAG_QUOTE 32U
 #define IS_DIGIT(x) '0' <= x && x <= '9'
+#define ABS(number) number > 0 ? number : (-1) * number
 
 typedef enum
 {
@@ -37,7 +38,7 @@ typedef struct
 {
 	unsigned int flags;
 	int width;
-	int is_set;
+	int is_pset;
 	int precision;
 	t_length length;
 	char conv_char;

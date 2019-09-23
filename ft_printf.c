@@ -6,12 +6,10 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/21 23:29:53 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/22 23:04:47 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 
 int ft_printf(char *format, ...)
@@ -28,12 +26,16 @@ int ft_printf(char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
+        {
 			parse_ret = parse_conversion(&format, &ap);
-		if (parse_ret == -1)
+            continue ;
+        }
+        if (parse_ret == -1)
 			break;
 		else
 			ret += parse_ret;
 		ret += write(1, format++, 1);
+
 	}
 	va_end(ap);
 	return (parse_ret == -1 ? -1 : ret);
