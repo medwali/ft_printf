@@ -1,3 +1,8 @@
+notes
+main
+libftprintf.a
+a.out
+main.c
 *.o
 libft/*.o
 conv_d_test
