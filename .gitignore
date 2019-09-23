@@ -6,3 +6,4 @@ main.c
 *.o
 libft/*.o
 conv_d_test
+libftprintf.a
