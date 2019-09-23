@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
+#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 05:55:11 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/23 14:16:29 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,16 +97,13 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-
- 
-
 $(NAME): $(OBJ) $(LIBFTOBJ)
 	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
 
 $(LIBFTOBJ):
 	make -C libft objs
 
-main: main.c $(NAME) 
+main: main.c $(NAME)
 	gcc -o main main.c $(NAME)
 
 clean:
@@ -119,4 +116,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all fclean re clean 
+conv_d: $(NAME)
+	gcc $(CFLAGS) -o conv_d_test tests/conv_d.test.c $(NAME)
+
+.PHONY: all fclean re clean
