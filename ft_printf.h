@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 23:24:30 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/23 13:52:34 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,9 @@ typedef enum
 typedef struct
 {
 	unsigned int flags;
-	struct
-	{
-		int is_param;
-		int value;
-	} width;
-	struct
-	{
-        int isset;
-		int is_param;
-		int value;
-	} precision;
+	int width;
+	int is_set;
+	int precision;
 	t_length length;
 	char conv_char;
 } t_conv_spec;
@@ -55,6 +47,6 @@ typedef struct
 int parse_conversion(char **conv_str, va_list *ap);
 int (*get_conv_function(int c))(t_conv_spec *, va_list *);
 int is_in_str(int c, char *str);
-int conv_d(t_conv_spec *conv_spec, va_list *ap);
+int conv_di(t_conv_spec *conv_spec, va_list *ap);
 int ft_printf(char *format, ...);
 #endif
