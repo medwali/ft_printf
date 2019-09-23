@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_conv_function.c                                :+:      :+:    :+:   */
+/*   conv_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 01:17:43 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/09/22 21:48:30 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/09/23 00:11:28 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int (*get_conv_function(int c))(t_conv_spec*, va_list*)
+int	conv_c(t_conv_spec *conv_spec, va_list *ap)
 {
-	if (c == 'd' || c == 'i')
-		return (&conv_d);
-	else if (c == 'c')
-		return (&conv_c);
-	else
-		return (NULL);
+	char c;
+
+	c = (char)va_arg(ap, char);
+	if (conv_spec->width && !(conv_spec->flags & FLAG_MINUS))
+		ft_putnchar(' ', conv_spec->width - 1);
+	write(1, &c, 1);
+	if (conv_spec->width && conv_spec->flags & FLAG_MINUS)
+		ft_putnchar(' ', conv_spec->width - 1);
+	return (conv_spec->width ? conv_spec->width : 1);
 }
