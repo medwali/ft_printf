@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 00:17:28 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/23 04:35:52 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int  get_spaces_nbr(t_conv_spec *conv_spec, int nbr, int nbr_len)
     int     width;
     int     precision;
 
-    precision = conv_spec->precision.value;
-    width = conv_spec->width.value;
-    if (conv_spec->precision.isset)
+    precision = conv_spec->precision;
+    width = conv_spec->width;
+    if (conv_spec->is_pset)
       return (width - ft_max(precision, nbr_len) -
         (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
     if (conv_spec->flags | FLAG_ZERO)
@@ -33,9 +33,9 @@ static int  get_zeros_nbr(t_conv_spec *conv_spec, int nbr, int nbr_len)
     int     width;
     int     precision;
 
-    precision = conv_spec->precision.value;
-    width = conv_spec->width.value;
-    if (conv_spec->precision.isset)
+    precision = conv_spec->precision;
+    width = conv_spec->width;
+    if (conv_spec->is_pset)
       return (precision - nbr_len - (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
     if (conv_spec->flags | FLAG_ZERO)
         return (width - nbr_len - (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
@@ -49,10 +49,6 @@ int	conv_d(t_conv_spec *conv_spec, va_list *ap)
     int             spaces;
     int             zeros;
 
-    if (conv_spec->width.is_param)
-		conv_spec->width.value = va_arg(*ap, int);
-	if (conv_spec->precision.is_param)
-		conv_spec->precision.value = va_arg(*ap, int);
 	if (conv_spec->length == L)
 		nbr = va_arg(*ap, long int);
 	else if (conv_spec->length == LL)

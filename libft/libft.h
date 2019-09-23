@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 23:23:23 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/23 04:32:10 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstsearch(t_list *lst, int (*f)(t_list *l));
 size_t				ft_strichr(const char *s, int c);
 void				ft_strrev(char *s);
+void				ft_putnchar(char c, int n);
 int					digit_len(long long n);
 int                 ft_max(int nbr1, int nbr2);
 
