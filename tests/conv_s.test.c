@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_conv_function.c                                :+:      :+:    :+:   */
+/*   conv_s.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 06:04:19 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/09/22 22:01:11 by ylagtab           #+#    #+#             */
+/*   Updated: 2019/09/23 06:04:44 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int (*get_conv_function(int c))(t_conv_spec*, va_list*)
+int main()
 {
-	if (c == 'd' || c == 'i')
-		return (&conv_d);
-	else if (c == 'c')
-		return (&conv_c);
-	else if (c == 's')
-		return (&conv_s);
-	else
-		return (NULL);
+    ft_printf("|%10s\n", "12345");
+    ft_printf("|%-10s\n", "12345");
+    ft_printf("|%10.3s\n", "12345");
+    ft_printf("|%-10.3s\n", "12345");
+    ft_printf("|%.s\n", "12345");
+    ft_printf("|%s\n", "12345");
 }

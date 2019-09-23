@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_c.c                                           :+:      :+:    :+:   */
+/*   conv_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 21:48:30 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 05:44:41 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/09/23 00:12:42 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/09/23 05:45:20 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	conv_c(t_conv_spec *conv_spec, va_list *ap)
+int	conv_s(t_conv_spec *conv_spec, va_list *ap)
 {
-	char c;
+	int str_len;
+	char *str;
 
-	c = (char)va_arg(*ap, int);
+	str = va_arg(*ap, char*);
+	str_len = ft_strlen(str);
+	str_len = conv_spec->is_pset && conv_spec->precision < str_len ?
+		conv_spec->precision : str_len;
 	if (conv_spec->width && !(conv_spec->flags & FLAG_MINUS))
-		ft_putnchar(' ', conv_spec->width - 1);
-	write(1, &c, 1);
+		ft_putnchar(' ',conv_spec->width - str_len);
+	write(1, str, str_len);
 	if (conv_spec->width && conv_spec->flags & FLAG_MINUS)
-		ft_putnchar(' ', conv_spec->width - 1);
-	return (conv_spec->width ? conv_spec->width : 1);
+		ft_putnchar(' ',conv_spec->width - str_len);
+	return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 04:34:51 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/23 05:40:10 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ int is_in_str(int c, char *str);
 int conv_d(t_conv_spec *conv_spec, va_list *ap);
 int ft_printf(char *format, ...);
 int	conv_c(t_conv_spec *conv_spec, va_list *ap);
+int	conv_s(t_conv_spec *conv_spec, va_list *ap);
+
 #endif

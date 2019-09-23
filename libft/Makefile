@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 18:54:50 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 04:28:56 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/23 06:02:38 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-SRC =	ft_atoi.c \
+SRC =	digit_len.c \
+		ft_atoi.c \
 		ft_bzero.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
@@ -34,6 +35,7 @@ SRC =	ft_atoi.c \
 		ft_lstmap.c \
 		ft_lstnew.c \
 		ft_lstsearch.c \
+		ft_max.c \
 		ft_memalloc.c \
 		ft_memccpy.c \
 		ft_memchr.c \
@@ -43,15 +45,15 @@ SRC =	ft_atoi.c \
 		ft_memmove.c \
 		ft_memset.c \
 		ft_putchar.c \
-		ft_putnchar.c \
 		ft_putchar_fd.c \
 		ft_putendl.c \
 		ft_putendl_fd.c \
 		ft_putnbr.c \
-		ft_putunbr.c \
 		ft_putnbr_fd.c \
+		ft_putnchar.c \
 		ft_putstr.c \
 		ft_putstr_fd.c \
+		ft_putunbr.c \
 		ft_strcat.c \
 		ft_strchr.c \
 		ft_strclr.c \
@@ -84,6 +86,11 @@ SRC =	ft_atoi.c \
 		ft_toupper.c
 
 OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): objs
+	ar urc $(NAME) $(OBJ)
 
 objs: $(OBJ)
 

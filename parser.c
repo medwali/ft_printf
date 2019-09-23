@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 23:46:48 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/23 06:06:13 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	parse_width(t_conv_spec *conv_spec,char **conv, va_list *ap)
 void	parse_precision(t_conv_spec *conv_spec,char **conv, va_list *ap)
 {
 		if (**conv == '.')
+		{
 			(*conv)++;
+			conv_spec->is_pset = 1;
+		}
 		else
 			return ;
 		if (IS_DIGIT(**conv))

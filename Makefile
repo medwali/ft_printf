@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 01:17:03 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/23 05:55:11 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ CC = gcc
 
 SRC =	conv_d.c \
 		conv_c.c \
+		conv_s.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
 		get_conv_function.c
 
-LIBFTOBJ =	libft/ft_atoi.o \
+LIBFTOBJ =	libft/digit_len.o \
+			libft/ft_atoi.o \
 			libft/ft_bzero.o \
 			libft/ft_isalnum.o \
 			libft/ft_isalpha.o \
@@ -41,6 +43,7 @@ LIBFTOBJ =	libft/ft_atoi.o \
 			libft/ft_lstmap.o \
 			libft/ft_lstnew.o \
 			libft/ft_lstsearch.o \
+			libft/ft_max.o \
 			libft/ft_memalloc.o \
 			libft/ft_memccpy.o \
 			libft/ft_memchr.o \
@@ -55,8 +58,10 @@ LIBFTOBJ =	libft/ft_atoi.o \
 			libft/ft_putendl_fd.o \
 			libft/ft_putnbr.o \
 			libft/ft_putnbr_fd.o \
+			libft/ft_putnchar.o \
 			libft/ft_putstr.o \
 			libft/ft_putstr_fd.o \
+			libft/ft_putunbr.o \
 			libft/ft_strcat.o \
 			libft/ft_strchr.o \
 			libft/ft_strclr.o \
