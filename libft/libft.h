@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 04:32:10 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/24 21:56:54 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 void				ft_putchar(char c);
-void                ft_putnchar(char c, int n);
-void                ft_putstr(char const *str);
+void				ft_putnchar(char c, int n);
+void				ft_putstr(char const *str);
 void				ft_putendl(char const *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putnbr(int n);
-void	            ft_putunbr(unsigned long long n);
+void				ft_putunbr(unsigned long long n);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 typedef struct		s_list
@@ -91,7 +91,7 @@ size_t				ft_strichr(const char *s, int c);
 void				ft_strrev(char *s);
 void				ft_putnchar(char c, int n);
 int					digit_len(long long n);
-int                 ft_max(int nbr1, int nbr2);
+int					ft_max(int nbr1, int nbr2);
 
 
 #endif

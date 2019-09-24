@@ -6,17 +6,17 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/24 21:48:12 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/24 21:53:52 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 
-static int  get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+static int	get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 {
-	int     width;
-	int     precision;
+	int		width;
+	int		precision;
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
@@ -28,10 +28,10 @@ static int  get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	return (width - nbr_len - (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
 }
 
-static int  get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+static int	get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 {
-	int     width;
-	int     precision;
+	int		width;
+	int		precision;
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
@@ -42,14 +42,14 @@ static int  get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	return (0);
 }
 
-int         get_printed_len(unsigned int flags, int nbr, int nbr_len, int spaces, int zeros)
+int			get_printed_len(unsigned int flags, int nbr, int nbr_len, int spaces, int zeros)
 {
 	spaces = spaces > 0 ? spaces : 0;
 	zeros = zeros > 0 ? zeros : 0;
 	return (spaces + zeros + nbr_len + (nbr > 0 || (flags & FLAG_PLUS)));
 }
 
-static int read_nbr(t_length len, char conv_c, unsigned long long *unbr, va_list *ap)
+static int	read_nbr(t_length len, char conv_c, unsigned long long *unbr, va_list *ap)
 {
 	int nbr;
 
@@ -81,13 +81,13 @@ static int read_nbr(t_length len, char conv_c, unsigned long long *unbr, va_list
 	return (0);
 }
 
-int	conv_d(t_conv_spec *conv_spec, va_list *ap)
+int		conv_d(t_conv_spec *conv_spec, va_list *ap)
 {
-	unsigned long long unbr;
-	int             _signed;
-	int             nbr_len;
-	int             spaces;
-	int             zeros;
+	unsigned long long	unbr;
+	int					_signed;
+	int					nbr_len;
+	int					spaces;
+	int					zeros;
 
 	_signed = read_nbr(conv_spec->length, conv_spec->conv_char, &unbr, ap);
 	nbr_len = digit_len(unbr);
