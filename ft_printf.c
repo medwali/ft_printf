@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/22 23:04:47 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/24 21:48:01 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int ft_printf(char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-        {
+		{
 			parse_ret = parse_conversion(&format, &ap);
-            continue ;
-        }
-        if (parse_ret == -1)
+			continue ;
+		}
+		if (parse_ret == -1)
 			break;
 		else
 			ret += parse_ret;
