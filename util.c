@@ -6,9 +6,11 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 16:31:50 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/25 15:28:00 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/25 15:55:13 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "./ft_printf.h"
 
 int is_in_str(int c, char *str)
 {
