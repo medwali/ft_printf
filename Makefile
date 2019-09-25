@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 16:55:08 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/09/25 20:59:29 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,16 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-SRC =	conv_d.c \
+SRC =	conv_di.c \
+		conv_u.c \
+		conv_o.c \
 		conv_c.c \
 		conv_s.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
-		get_conv_function.c
+		get_conv_function.c \
+		read_numbers.c
 
 LIBFTOBJ =	libft/digit_len.o \
 			libft/ft_atoi.o \
@@ -117,7 +120,13 @@ fclean: clean
 
 re: fclean all
 
-conv_d: $(NAME)
-	gcc $(CFLAGS) -o conv_d_test tests/conv_d.test.c $(NAME)
+conv_di: $(NAME)
+	gcc $(CFLAGS) -o conv_d_test tests/conv_di.test.c $(NAME)
+
+conv_u: $(NAME)
+	gcc $(CFLAGS) -o conv_u_test tests/conv_u.test.c $(NAME)
+
+conv_o: $(NAME)
+	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
 
 .PHONY: all fclean re clean

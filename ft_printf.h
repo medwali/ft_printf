@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 13:53:48 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/25 21:01:22 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "./libft/libft.h"
+#include <stdio.h>
 
 #define FLAG_ZERO 1U
 #define FLAG_HASH 2U
@@ -23,7 +24,7 @@
 #define FLAG_PLUS 8U
 #define FLAG_MINUS 16U
 #define FLAG_QUOTE 32U
-#define IS_DIGIT(x) '0' <= x && x <= '9'
+#define IS_DIGIT(x) '0' <= x &&x <= '9'
 #define ABS(number) number > 0 ? number : (-1) * number
 
 typedef enum
@@ -47,9 +48,14 @@ typedef struct
 int parse_conversion(char **conv_str, va_list *ap);
 int (*get_conv_function(int c))(t_conv_spec *, va_list *);
 int is_in_str(int c, char *str);
-int conv_d(t_conv_spec *conv_spec, va_list *ap);
 int ft_printf(char *format, ...);
-int	conv_c(t_conv_spec *conv_spec, va_list *ap);
-int	conv_s(t_conv_spec *conv_spec, va_list *ap);
+int conv_di(t_conv_spec *conv_spec, va_list *ap);
+int conv_u(t_conv_spec *conv_spec, va_list *ap);
+int conv_o(t_conv_spec *conv_spec, va_list *ap);
+int conv_c(t_conv_spec *conv_spec, va_list *ap);
+int conv_s(t_conv_spec *conv_spec, va_list *ap);
+long long read_int(va_list *ap, t_length len);
+unsigned long long read_uint(va_list *ap, t_length len);
+void put_octal(unsigned long long decimal);
 
 #endif
