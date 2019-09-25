@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/25 19:17:54 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/25 21:00:33 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int (*get_conv_function(int c))(t_conv_spec *, va_list *)
 		return (&conv_di);
 	if (c == 'u')
 		return (&conv_u);
+	if (c == 'o')
+		return (&conv_o);
 	if (c == 'c')
 		return (&conv_c);
 	if (c == 's')

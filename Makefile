@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/25 19:29:13 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/09/25 20:59:29 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CC = gcc
 
 SRC =	conv_di.c \
 		conv_u.c \
+		conv_o.c \
 		conv_c.c \
 		conv_s.c \
 		ft_printf.c \
@@ -124,5 +125,8 @@ conv_di: $(NAME)
 
 conv_u: $(NAME)
 	gcc $(CFLAGS) -o conv_u_test tests/conv_u.test.c $(NAME)
+
+conv_o: $(NAME)
+	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
 
 .PHONY: all fclean re clean
