@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
+#    By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/26 00:38:39 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/30 17:37:33 by mohamed          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC =	conv_d.c \
 		conv_c.c \
 		conv_s.c \
 		conv_x.c \
+		conv_p.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
@@ -101,10 +102,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFTOBJ) 
-	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
+	ar rc $(NAME) $(OBJ) $(LIBFTOBJ)
 
-$(LIBFTOBJ):
-	make -C libft objs
 
 main: main.c $(NAME)
 	gcc -o main main.c $(NAME)
