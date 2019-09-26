@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/24 21:56:54 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/26 00:49:14 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ void				ft_strrev(char *s);
 void				ft_putnchar(char c, int n);
 int					digit_len(long long n);
 int					ft_max(int nbr1, int nbr2);
+void				ft_putunbr_base(unsigned long long n, int base,
+						int is_upper);
+int					digit_len_base(unsigned long long n, int base);
+
+
 
 
 #endif

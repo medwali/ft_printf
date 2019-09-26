@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
+#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 16:55:08 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/09/26 00:38:39 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CC = gcc
 SRC =	conv_d.c \
 		conv_c.c \
 		conv_s.c \
+		conv_x.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
@@ -91,13 +92,15 @@ LIBFTOBJ =	libft/digit_len.o \
 			libft/ft_strsub.o \
 			libft/ft_strtrim.o \
 			libft/ft_tolower.o \
-			libft/ft_toupper.o
+			libft/ft_toupper.o \
+			libft/digit_len_base.o \
+			libft/ft_putunbr_base.o
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFTOBJ)
+$(NAME): $(OBJ) $(LIBFTOBJ) 
 	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
 
 $(LIBFTOBJ):

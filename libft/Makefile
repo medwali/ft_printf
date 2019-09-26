@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 18:54:50 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 06:02:38 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/09/26 00:27:01 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 
 SRC =	digit_len.c \
+		digit_len_base.c \
 		ft_atoi.c \
 		ft_bzero.c \
 		ft_isalnum.c \
@@ -83,7 +84,8 @@ SRC =	digit_len.c \
 		ft_strsub.c \
 		ft_strtrim.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		ft_putunbr_base.c
 
 OBJ = $(SRC:.c=.o)
 

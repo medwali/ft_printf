@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 22:22:14 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/25 05:19:39 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/26 00:48:45 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int conv_x(t_conv_spec *conv_spec, va_list *ap)
 	hex_nbr = get_int(conv_spec, ap);
 	if (conv_spec->is_pset && conv_spec->precision  == 0 && hex_nbr == 0)
 		return (0);
-	nbr_len = digit_len_base(hex_nbr,16);
+	nbr_len = digit_len_base(hex_nbr, 16);
 	spaces = get_spaces_len(conv_spec, 
 		conv_spec->flags & FLAG_HASH ? 2 : 0, nbr_len);
 	zeros = get_zeros_len(conv_spec,

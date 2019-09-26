@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 13:53:48 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/26 00:05:31 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define FLAG_QUOTE 32U
 #define IS_DIGIT(x) '0' <= x && x <= '9'
 #define ABS(number) number > 0 ? number : (-1) * number
+#define POSITIVE_OR_ZERO(x) x < 0 ? 0 : x
 
 typedef enum
 {
@@ -51,5 +52,8 @@ int conv_d(t_conv_spec *conv_spec, va_list *ap);
 int ft_printf(char *format, ...);
 int	conv_c(t_conv_spec *conv_spec, va_list *ap);
 int	conv_s(t_conv_spec *conv_spec, va_list *ap);
+int conv_x(t_conv_spec *conv_spec, va_list *ap);
+int	get_zeros_len(t_conv_spec *conv_spec, int extra, int nbr_len);
+int	get_spaces_len(t_conv_spec *conv_spec, int extra, int nbr_len);
 
 #endif

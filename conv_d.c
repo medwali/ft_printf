@@ -6,29 +6,27 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/24 21:53:52 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/09/26 00:13:47 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 
-static int	get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+int	get_spaces_len(t_conv_spec *conv_spec, int extra, int nbr_len)
 {
 	int		width;
 	int		precision;
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
-	if (conv_spec->is_pset)
-	  return (width - ft_max(precision, nbr_len) -
-		(nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
-	if (conv_spec->flags | FLAG_ZERO)
+	if (!conv_spec->is_pset && conv_spec->flags & FLAG_ZERO )
 		return (0);
-	return (width - nbr_len - (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
+	else
+		return (POSITIVE_OR_ZERO(width - ft_max(precision, nbr_len) - extra));
 }
 
-static int	get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+int	get_zeros_len(t_conv_spec *conv_spec, int extra, int nbr_len)
 {
 	int		width;
 	int		precision;
@@ -36,9 +34,9 @@ static int	get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	precision = conv_spec->precision;
 	width = conv_spec->width;
 	if (conv_spec->is_pset)
-	  return (precision - nbr_len);
-	if (conv_spec->flags | FLAG_ZERO)
-		return (width - nbr_len - (nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
+		return (POSITIVE_OR_ZERO(precision - nbr_len));
+	if (conv_spec->flags & FLAG_ZERO)
+		return (POSITIVE_OR_ZERO(width - nbr_len - extra));
 	return (0);
 }
 
@@ -84,19 +82,21 @@ static int	read_nbr(t_length len, char conv_c, unsigned long long *unbr, va_list
 int		conv_d(t_conv_spec *conv_spec, va_list *ap)
 {
 	unsigned long long	unbr;
-	int					_signed;
+	int					is_neg;
 	int					nbr_len;
 	int					spaces;
 	int					zeros;
 
-	_signed = read_nbr(conv_spec->length, conv_spec->conv_char, &unbr, ap);
+	is_neg = read_nbr(conv_spec->length, conv_spec->conv_char, &unbr, ap);
 	nbr_len = digit_len(unbr);
-	spaces = get_spaces_len(conv_spec, unbr, nbr_len);
-	zeros = get_zeros_len(conv_spec, unbr, nbr_len);
+	spaces = get_spaces_len(conv_spec, 
+		(is_neg || (conv_spec->flags & FLAG_PLUS)), nbr_len);
+	zeros = get_zeros_len(conv_spec, 
+		(is_neg || (conv_spec->flags & FLAG_PLUS)), nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);
-	if ((conv_spec->flags & FLAG_PLUS) || _signed)
-		ft_putchar(_signed ? '-' : '+');
+	if ((conv_spec->flags & FLAG_PLUS) || is_neg)
+		ft_putchar(is_neg ? '-' : '+');
 	ft_putnchar('0', zeros);
 	ft_putunbr(unbr);
 	if (conv_spec->flags & FLAG_MINUS)
