@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 23:06:05 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/28 15:01:03 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ int ft_printf(char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-        {
+		{
 			parse_ret = parse_conversion(&format, &ap);
-            continue ;
-        }
-        if (parse_ret == -1)
-			break;
-		ret += parse_ret + write(1, format++, 1);
+			if (parse_ret == -1)
+				break;
+			else
+				ret += parse_ret;
+		}
+		else
+			ret += write(1, format++, 1);
 	}
 	va_end(ap);
 	return (parse_ret == -1 ? -1 : ret);

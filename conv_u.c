@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:55 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/09/25 19:27:19 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/09/28 15:04:49 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int get_spaces_len(t_conv_spec *conv_spec, int nbr_len)
 	if (conv_spec->is_pset == 0 && (conv_spec->flags & FLAG_ZERO))
 		return (0);
 	return (width - ft_max(precision, nbr_len) -
-			(conv_spec->flags & FLAG_PLUS));
+					(conv_spec->flags & FLAG_PLUS));
 }
 
 static int get_zeros_len(t_conv_spec *conv_spec, int nbr_len)
@@ -59,8 +59,6 @@ int conv_u(t_conv_spec *conv_spec, va_list *ap)
 	zeros = get_zeros_len(conv_spec, nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);
-	if (conv_spec->flags & FLAG_PLUS)
-		ft_putchar('+');
 	ft_putnchar('0', zeros);
 	ft_putunbr(unbr);
 	if (conv_spec->flags & FLAG_MINUS)
