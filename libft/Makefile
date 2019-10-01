@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
+#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 18:54:50 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/23 06:02:38 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/10/01 10:40:20 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
-SRC =	digit_len.c \
+SRC =	ft_nbrlen.c \
+		ft_nbrlen_base.c \
 		ft_atoi.c \
 		ft_bzero.c \
 		ft_isalnum.c \

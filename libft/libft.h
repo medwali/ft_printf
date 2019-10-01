@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/25 21:05:34 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/01 10:43:08 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char *ft_strrchr(const char *s, int c);
 char *ft_strdup(const char *s1);
 char *ft_strncpy(char *dst, const char *src, size_t len);
 char *ft_strnstr(const char *haystack, const char *needle,
-				 size_t len);
+								 size_t len);
 char *ft_strstr(const char *haystack, const char *needle);
 size_t ft_strlcat(char *dst, const char *src, size_t size);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -90,7 +90,8 @@ t_list *ft_lstsearch(t_list *lst, int (*f)(t_list *l));
 size_t ft_strichr(const char *s, int c);
 void ft_strrev(char *s);
 void ft_putnchar(char c, int n);
-int digit_len(unsigned long long n);
+int ft_nbrlen(unsigned long long n);
+int ft_nbrlen_base(unsigned long long n, int base);
 int ft_max(int nbr1, int nbr2);
 
 #endif

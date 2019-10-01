@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/09/25 20:59:29 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/10/01 10:41:07 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC =	conv_di.c \
 		get_conv_function.c \
 		read_numbers.c
 
-LIBFTOBJ =	libft/digit_len.o \
+LIBFTOBJ =	libft/ft_nbrlen.o \
+			libft/ft_nbrlen_base.o \
 			libft/ft_atoi.o \
 			libft/ft_bzero.o \
 			libft/ft_isalnum.o \
