@@ -6,13 +6,13 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 13:53:51 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/01 11:18:46 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	parse_flags(t_conv_spec *conv_spec,char **conv)
+void parse_flags(t_conv_spec *conv_spec, char **conv)
 {
 	while (1)
 	{
@@ -29,7 +29,7 @@ void	parse_flags(t_conv_spec *conv_spec,char **conv)
 		else if (**conv == '\'')
 			conv_spec->flags |= FLAG_QUOTE;
 		else
-			return ;
+			break;
 		(*conv)++;
 	}
 	if (conv_spec->flags & FLAG_MINUS && conv_spec->flags & FLAG_ZERO)
@@ -38,51 +38,51 @@ void	parse_flags(t_conv_spec *conv_spec,char **conv)
 		conv_spec->flags ^= FLAG_SPACE;
 }
 
-void	parse_width(t_conv_spec *conv_spec,char **conv, va_list *ap)
+void parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
 {
-		if ('1' <= **conv && **conv <= '9')
-		{
-			conv_spec->width = ft_atoi(*conv);
-			while (IS_DIGIT(**conv))
-				(*conv)++;
-		}
-		else if (**conv == '*')
-		{
-			conv_spec->width = va_arg(*ap, int);
+	if ('1' <= **conv && **conv <= '9')
+	{
+		conv_spec->width = ft_atoi(*conv);
+		while (IS_DIGIT(**conv))
 			(*conv)++;
-		}
+	}
+	else if (**conv == '*')
+	{
+		conv_spec->width = va_arg(*ap, int);
+		(*conv)++;
+	}
 }
 
-void	parse_precision(t_conv_spec *conv_spec,char **conv, va_list *ap)
+void parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
 {
-		if (**conv == '.')
-		{
+	if (**conv == '.')
+	{
+		(*conv)++;
+		conv_spec->is_pset = 1;
+	}
+	else
+		return;
+	if (IS_DIGIT(**conv))
+	{
+		conv_spec->precision = ft_atoi(*conv);
+		while (IS_DIGIT(**conv))
 			(*conv)++;
-			conv_spec->is_pset = 1;
-		}
-		else
-			return ;
-		if (IS_DIGIT(**conv))
-		{
-			conv_spec->precision = ft_atoi(*conv);
-			while (IS_DIGIT(**conv))
-				(*conv)++;
-		}
-		else if (**conv == '*')
-		{
-			conv_spec->precision = va_arg(*ap, int);
-			(*conv)++;
-		}
+	}
+	else if (**conv == '*')
+	{
+		conv_spec->precision = va_arg(*ap, int);
+		(*conv)++;
+	}
 }
 
-void	parse_length(t_conv_spec *conv_spec,char **conv)
+void parse_length(t_conv_spec *conv_spec, char **conv)
 {
-	if (**conv == 'h' && *((*conv) + 1) == 'h' )
+	if (**conv == 'h' && *((*conv) + 1) == 'h')
 	{
 		conv_spec->length = HH;
 		(*conv) += 2;
 	}
-	else if (**conv == 'l' && *((*conv) + 1) == 'l' )
+	else if (**conv == 'l' && *((*conv) + 1) == 'l')
 	{
 		conv_spec->length = LL;
 		(*conv) += 2;
@@ -104,10 +104,10 @@ void	parse_length(t_conv_spec *conv_spec,char **conv)
 	}
 }
 
-int		parse_conversion(char **conv_str, va_list *ap)
+int parse_conversion(char **conv_str, va_list *ap)
 {
-	t_conv_spec	conv_spec;
-	char		*c_str;
+	t_conv_spec conv_spec;
+	char *c_str;
 
 	c_str = *conv_str;
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
@@ -123,5 +123,5 @@ int		parse_conversion(char **conv_str, va_list *ap)
 		return (get_conv_function(*(*conv_str)++)(&conv_spec, ap));
 	}
 	else
- 		return (0);
+		return (0);
 }
