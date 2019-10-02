@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:07:20 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/09/25 21:06:01 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/01 11:29:50 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,8 @@
 #include <stdio.h>
 int main()
 {
-	ft_printf("o       : |%#10o|\n", 1337);
-	printf("o       : |%#10o|\n", 1337);
-	ft_printf("o       : |%o|\n", 1337);
-	printf("o       : |%o|\n", 1337);
-	ft_printf("20o     : |%20o|\n", 1337);
-	printf("20o     : |%20o|\n", 1337);
-	ft_printf("-20o    : |%-20o|\n", 1337);
-	printf("-20o    : |%-20o|\n", 1337);
-	ft_printf("20.14o  : |%20.14o|\n", 1337);
-	printf("20.14o  : |%20.14o|\n", 1337);
-	ft_printf("-20.14o : |%-20.14o|\n", 1337);
-	printf("-20.14o : |%-20.14o|\n", 1337);
-	ft_printf("20.14o  : |%20.14o|\n", 1337);
-	printf("20.14o  : |%20.14o|\n", 1337);
-	ft_printf("020o    : |%020o|\n", 1337);
-	printf("020o    : |%020o|\n", 1337);
-	ft_printf("020.14o : |%020.14o|\n", 1337);
-	printf("020.14o : |%020.14o|\n", 1337);
+
+	ft_printf("@moulitest: %o", 0);
+	printf("@moulitest: %o", 0);
 	return (0);
 }

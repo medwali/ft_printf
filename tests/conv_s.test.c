@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_s.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 22:01:11 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/09/23 06:04:44 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/10/01 11:32:35 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int main()
 {
-    ft_printf("|%10s\n", "12345");
-    ft_printf("|%-10s\n", "12345");
-    ft_printf("|%10.3s\n", "12345");
-    ft_printf("|%-10.3s\n", "12345");
-    ft_printf("|%.s\n", "12345");
-    ft_printf("|%s\n", "12345");
+    int a = ft_printf("@moulitest: ");
+    int b = printf("@moulitest: ");
+    printf("\na: %d, b = %d\n", a, b);
+    // ft_printf("|%-10s\n", "12345");
+    // ft_printf("|%10.3s\n", "12345");
+    // ft_printf("|%-10.3s\n", "12345");
+    // ft_printf("|%.s\n", "12345");
+    // ft_printf("|%s\n", "12345");
 }
