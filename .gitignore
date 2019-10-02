@@ -8,3 +8,4 @@ libft/*.o
 conv_d_test
 libftprintf.a
 **/.DS_Store
+test/

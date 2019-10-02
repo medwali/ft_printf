@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:55 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/09/28 15:04:49 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/01 11:46:22 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int conv_u(t_conv_spec *conv_spec, va_list *ap)
 	int zeros;
 
 	unbr = read_uint(ap, conv_spec->length);
-	nbr_len = digit_len(unbr);
+	nbr_len = ft_nbrlen(unbr);
 	spaces = get_spaces_len(conv_spec, nbr_len);
 	zeros = get_zeros_len(conv_spec, nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)

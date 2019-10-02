@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/25 19:21:01 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/01 11:49:20 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	if (conv_spec->is_pset == 0 && (conv_spec->flags & FLAG_ZERO))
 		return (0);
 	return (width - ft_max(precision, nbr_len) -
-			(nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
+					(nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
 }
 
 static int get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
@@ -43,6 +43,7 @@ int get_printed_len(unsigned int flags, int nbr, int nbr_len, int spaces, int ze
 {
 	spaces = spaces > 0 ? spaces : 0;
 	zeros = zeros > 0 ? zeros : 0;
+	printf("\nspaces: %d, zeros: %d\n", spaces, zeros);
 	return (spaces + zeros + nbr_len + (nbr < 0 || (flags & FLAG_PLUS)));
 }
 
@@ -54,7 +55,7 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 	int zeros;
 
 	nbr = read_int(ap, conv_spec->length);
-	nbr_len = digit_len(ABS(nbr));
+	nbr_len = ft_nbrlen(ABS(nbr));
 	spaces = get_spaces_len(conv_spec, nbr, nbr_len);
 	zeros = get_zeros_len(conv_spec, nbr, nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
