@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/10/01 10:41:07 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/10/03 14:43:36 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =	conv_di.c \
 		conv_o.c \
 		conv_c.c \
 		conv_s.c \
+		conv_percenatge.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
