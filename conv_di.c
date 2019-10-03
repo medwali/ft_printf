@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/01 11:49:20 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/02 13:15:35 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int get_printed_len(unsigned int flags, int nbr, int nbr_len, int spaces, int ze
 {
 	spaces = spaces > 0 ? spaces : 0;
 	zeros = zeros > 0 ? zeros : 0;
-	printf("\nspaces: %d, zeros: %d\n", spaces, zeros);
 	return (spaces + zeros + nbr_len + (nbr < 0 || (flags & FLAG_PLUS)));
 }
 
@@ -57,6 +56,8 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 	nbr = read_int(ap, conv_spec->length);
 	nbr_len = ft_nbrlen(ABS(nbr));
 	spaces = get_spaces_len(conv_spec, nbr, nbr_len);
+	if ((conv_spec->flags & FLAG_SPACE) && nbr >= 0)
+		spaces = (spaces <= 0) ? 1 : spaces;
 	zeros = get_zeros_len(conv_spec, nbr, nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);

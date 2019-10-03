@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:07:20 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/10/01 11:47:43 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/02 13:18:39 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,8 @@
 #include <stdio.h>
 int main()
 {
-	int a = ft_printf("%d", -1);
-	printf("\na = %d\n", a);
-	// ft_printf("d      : |%d|\n", 180);
-	// ft_printf("+d     : |%+d|\n", 1337);
-	// ft_printf("10d    : |%10d|\n", 1337);
-	// ft_printf("-10d   : |%-10d|\n", 1337);
-	// ft_printf("10.6d  : |%10.6d|\n", 1337);
-	// ft_printf("10.6d  : |%.10d|\n", -1337);
-	// ft_printf("-10.6d : |%-10.6d|\n", 1337);
-	// ft_printf("+10.6d : |%+.10d|\n", 1337);
-	// ft_printf("010d   : |%010d|\n", 1337);
-	// ft_printf("010.6d : |%010.6d|\n", 1337);
+	// int a = ft_printf("%llu\n", 9223372036854775808);
+	printf("%llu\n", 9223372036854775808);
+	// printf("a: %d, b: %d\n", a, b);
 	return (0);
 }
