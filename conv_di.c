@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/03 11:26:59 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/03 11:54:35 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 
 	nbr = read_int(ap, conv_spec->length);
 	nbr_len = ft_nbrlen(ABS(nbr));
+	if (nbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0)
+		nbr_len = 0;
 	spaces = get_spaces_len(conv_spec, nbr, nbr_len);
 	if ((conv_spec->flags & FLAG_SPACE) && nbr >= 0)
 		spaces = (spaces <= 0) ? 1 : spaces;
@@ -64,7 +66,8 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 	if ((conv_spec->flags & FLAG_PLUS) || nbr < 0)
 		ft_putchar(nbr < 0 ? '-' : '+');
 	ft_putnchar('0', zeros);
-	ft_putunbr(ABS(nbr));
+	if (!(nbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0))
+		ft_putunbr(ABS(nbr));
 	if (conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', spaces);
 	return (get_printed_len(conv_spec->flags, nbr < 0, nbr_len, spaces, zeros));

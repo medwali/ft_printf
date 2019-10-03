@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:55 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/10/01 11:46:22 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/03 13:50:36 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static int get_zeros_len(t_conv_spec *conv_spec, int nbr_len)
 	return (0);
 }
 
-static int get_printed_len(unsigned int flags, int nbr_len, int spaces, int zeros)
+static int get_printed_len(int nbr_len, int spaces, int zeros)
 {
 	spaces = spaces > 0 ? spaces : 0;
 	zeros = zeros > 0 ? zeros : 0;
-	return (spaces + zeros + nbr_len + (flags & FLAG_PLUS));
+	return (spaces + zeros + nbr_len);
 }
 
 int conv_u(t_conv_spec *conv_spec, va_list *ap)
@@ -55,13 +55,16 @@ int conv_u(t_conv_spec *conv_spec, va_list *ap)
 
 	unbr = read_uint(ap, conv_spec->length);
 	nbr_len = ft_nbrlen(unbr);
+	if (unbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0)
+		nbr_len = 0;
 	spaces = get_spaces_len(conv_spec, nbr_len);
 	zeros = get_zeros_len(conv_spec, nbr_len);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);
 	ft_putnchar('0', zeros);
-	ft_putunbr(unbr);
+	if (!(unbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0))
+		ft_putunbr(unbr);
 	if (conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', spaces);
-	return (get_printed_len(conv_spec->flags, nbr_len, spaces, zeros));
+	return (get_printed_len(nbr_len, spaces, zeros));
 }
