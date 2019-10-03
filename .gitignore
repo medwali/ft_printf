@@ -9,3 +9,4 @@ conv_d_test
 libftprintf.a
 **/.DS_Store
 tests/
+tests/*

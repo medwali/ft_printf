@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/02 13:15:35 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/03 11:26:59 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static int get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	return (0);
 }
 
-int get_printed_len(unsigned int flags, int nbr, int nbr_len, int spaces, int zeros)
+int get_printed_len(unsigned int flags, int is_neg, int nbr_len, int spaces, int zeros)
 {
 	spaces = spaces > 0 ? spaces : 0;
 	zeros = zeros > 0 ? zeros : 0;
-	return (spaces + zeros + nbr_len + (nbr < 0 || (flags & FLAG_PLUS)));
+	return (spaces + zeros + nbr_len + (is_neg || (flags & FLAG_PLUS)));
 }
 
 int conv_di(t_conv_spec *conv_spec, va_list *ap)
@@ -67,5 +67,5 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 	ft_putunbr(ABS(nbr));
 	if (conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', spaces);
-	return (get_printed_len(conv_spec->flags, nbr, nbr_len, spaces, zeros));
+	return (get_printed_len(conv_spec->flags, nbr < 0, nbr_len, spaces, zeros));
 }
