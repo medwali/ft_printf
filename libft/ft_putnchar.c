@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:47:09 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/23 04:32:11 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/10/07 13:15:23 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnchar(char c, int n)
 {

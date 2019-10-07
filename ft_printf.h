@@ -6,17 +6,15 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/03 14:43:26 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/07 14:10:22 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
+
 #include "./libft/libft.h"
-#include <stdio.h>
+#include <stdarg.h>
 
 #define FLAG_ZERO 1U
 #define FLAG_HASH 2U

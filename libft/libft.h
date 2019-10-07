@@ -6,15 +6,13 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/01 10:43:08 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/07 14:07:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 #define LIBFT_H
 #include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 void *ft_memcpy(void *dst, const void *src, size_t n);
 void *ft_memset(void *b, int c, size_t len);

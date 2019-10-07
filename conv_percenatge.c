@@ -6,11 +6,12 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 13:54:40 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/10/03 15:09:33 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/07 14:12:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
+#include <unistd.h>
 
 int conv_percenatge(t_conv_spec *conv_spec, va_list *ap)
 {

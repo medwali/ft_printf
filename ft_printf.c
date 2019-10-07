@@ -6,11 +6,12 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/28 15:01:03 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/07 14:11:38 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
 int ft_printf(char *format, ...)
 {

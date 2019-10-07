@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 05:40:49 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/04/11 14:42:24 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/10/07 13:20:37 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 void	ft_putstr(char const *str)
 {
-	if (str == NULL)
-		return ;
-	while (*str)
-		ft_putchar(*str++);
+	ft_putstr_fd(str, 1);
 }

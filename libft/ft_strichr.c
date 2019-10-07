@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strichr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 19:05:08 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/04/10 19:28:24 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/10/07 13:23:27 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
 /*
-** find `c` index in `s`, otherwise return NULL
+** find `c` index in `s`, otherwise return -1
 */
 
 size_t	ft_strichr(const char *s, int c)
