@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 14:10:22 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:22:36 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,31 @@
 #define FLAG_QUOTE 32U
 #define IS_DIGIT(x) '0' <= x &&x <= '9'
 #define ABS(number) number > 0 ? number : (-1) * number
+
+#define BOLD "\e[1m"
+#define DIM "\e[1m"
+#define UNDERLINED "\e[4m"
+#define BLINK "\e[5m"
+#define INVERTED "\e[7m"
+
+#define HIDDEN "\e[30m"
+#define BLACK "\e[30m"
+#define RED "\e[31m"
+#define GREEN "\e[32m"
+#define YELLOW "\e[33m"
+#define BLUE "\e[34m"
+#define MAGENTA "\e[35m"
+#define CYAN "\e[36m"
+#define LIGHT_GRAY "\e[37m"
+#define DARK_GRAY "\e[90m"
+#define LIGHT_RED "\e[91m"
+#define LIGHT_GREEN "\e[92m"
+#define LIGHT_YELLOW "\e[93m"
+#define LIGHT_BLUE "\e[94m"
+#define LIGHT_MAGENTA "\e[95m"
+#define LIGHT_CYAN "\e[96m"
+
+#define END "\e[0m"
 
 typedef enum
 {

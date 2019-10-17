@@ -1,12 +1,12 @@
 notes
 main
 libftprintf.a
+libft/libft.a
 a.out
 main.c
 *.o
 libft/*.o
 conv_d_test
-libftprintf.a
 **/.DS_Store
 tests/
 tests/*
