@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_conv_function.c                                :+:      :+:    :+:   */
+/*   bigint_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/02 22:25:04 by mohamed          ###   ########.fr       */
+/*   Created: 2019/10/29 15:23:37 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/11/03 01:48:33 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf.h"
+#include "../ft_printf.h"
 
-int (*get_conv_function(int c))(t_conv_spec *, va_list *)
+t_bigint	*bigint_add(t_bigint *a, t_bigint *b)
 {
-	if (c == 'd' || c == 'i')
-		return (&conv_di);
-	if (c == 'u')
-		return (&conv_u);
-	if (c == 'o')
-		return (&conv_o);
-	if (c == 'c')
-		return (&conv_c);
-	if (c == 's')
-		return (&conv_s);
-	if (c == '%')
-		return (&conv_percenatge);
-	return (NULL);
+	int			i;
+	int			new_len;
+	t_bigint	*res;
+
+	new_len = ft_max(a->length, b->length) + 1;
+	res = bigint_new(new_len);
+	i = 0;
+	while (i < new_len)
+	{
+		res->digits[i] += a->digits[i] + b->digits[i];
+		if (res->digits[i] > 9)
+			res->digits[i + 1]++;
+	}
+	return (res);
 }

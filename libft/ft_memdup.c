@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 19:00:02 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/01 16:24:20 by mel-idri         ###   ########.fr       */
+/*   Created: 2019/11/01 16:08:22 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/11/01 16:22:11 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memdup(void *dst, const void *src, size_t n)
 {
 	size_t i;
 
+	dst = ft_autoalloc(n);
 	i = 0;
 	while (i < n)
 	{

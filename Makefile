@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
+#    By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/10/03 14:43:36 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/04 13:53:05 by mohamed          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC =	conv_di.c \
 		get_conv_function.c \
 		read_numbers.c
 
-LIBFTOBJ =	libft/ft_nbrlen.o \
+LIBFTOBJ =	libft/ft_autoalloc.o \
+			libft/ft_nbrlen.o \
 			libft/ft_nbrlen_base.o \
 			libft/ft_atoi.o \
 			libft/ft_bzero.o \

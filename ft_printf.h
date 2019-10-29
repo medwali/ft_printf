@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/08 12:22:36 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/02 23:11:44 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 
-#include "./libft/libft.h"
+#include "bigint/bigint.h"
+#include "libft/libft.h"
+
+
 #include <stdarg.h>
 
 #define FLAG_ZERO 1U
@@ -81,5 +84,6 @@ int conv_percenatge(t_conv_spec *conv_spec, va_list *ap);
 long long read_int(va_list *ap, t_length len);
 unsigned long long read_uint(va_list *ap, t_length len);
 void put_octal(unsigned long long decimal);
+int handle_color(char **format);
 
 #endif

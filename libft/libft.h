@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 14:07:41 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/02 23:09:26 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 #define LIBFT_H
 #include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#define ALLOC_FREE 0
+#define ALLOC_ADD 0
 
 void *ft_memcpy(void *dst, const void *src, size_t n);
 void *ft_memset(void *b, int c, size_t len);
@@ -91,5 +95,16 @@ void ft_putnchar(char c, int n);
 int ft_nbrlen(unsigned long long n);
 int ft_nbrlen_base(unsigned long long n, int base);
 int ft_max(int nbr1, int nbr2);
+typedef struct s_alloc_list
+{
+	void				*address;
+	struct s_alloc_list	*next;
+} 						t_alloc_list;
+
+void				ft_autofree_all();
+void	*ft_memdup(void *dst, const void *src, size_t n);
+void	ft_autofree_all();
+void	*ft_autoalloc(size_t size);
+
 
 #endif

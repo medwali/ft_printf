@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_percenatge.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 13:54:40 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/10/07 14:12:41 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/02 20:13:02 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int conv_percenatge(t_conv_spec *conv_spec, va_list *ap)
   int spaces;
   int zeros;
   (void)ap;
+  (void)zeros; // to shutup the compiler
   if (conv_spec->flags & FLAG_ZERO)
     zeros = conv_spec->width - 1;
   else
