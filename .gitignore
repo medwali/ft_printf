@@ -6,7 +6,7 @@ main.c
 *.o
 libft/*.o
 conv_d_test
-libftprintf.a
+libft/libft.a
 **/.DS_Store
 tests/
 tests/*
