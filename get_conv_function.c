@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 14:11:33 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/07 14:25:54 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int (*get_conv_function(int c))(t_conv_spec *, va_list *)
 		return (&conv_s);
 	if (c == '%')
 		return (&conv_percenatge);
-	return (NULL);
+	return (&not_implemented);
 }

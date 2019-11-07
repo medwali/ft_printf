@@ -1,6 +1,7 @@
 notes
 main
 libftprintf.a
+libft/libft.a
 a.out
 main.c
 *.o

@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 14:10:22 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/07 14:27:07 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int conv_percenatge(t_conv_spec *conv_spec, va_list *ap);
 long long read_int(va_list *ap, t_length len);
 unsigned long long read_uint(va_list *ap, t_length len);
 void put_octal(unsigned long long decimal);
+int  not_implemented(t_conv_spec *conv_spec, va_list *ap);
 
 #endif
