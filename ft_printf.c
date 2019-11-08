@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/16 19:11:16 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/08 15:01:44 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,8 @@ int ft_printf(char *format, ...)
 				ret += parse_ret;
 		}
 		else
-		{
-			if (*format == '{')
-				ret += handle_color(&format);
-			else if (*format == '\\' && *(format + 1) == '{')
-			{
-				ret += write(1, format, 2);
-				format += 2;
-			}
-			else
-				ret += write(1, format++, 1);
-		}
+			ret += write(1, format++, 1);
 	}
 	va_end(ap);
 	return (parse_ret == -1 ? -1 : ret);
 }
-// if
-// \{red} -> {red}
-// {red} -> red color
-// \. -> \ -->
