@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bigint_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:23:37 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/03 01:48:33 by mohamed          ###   ########.fr       */
+/*   Updated: 2019/11/08 14:45:17 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 t_bigint	*bigint_add(t_bigint *a, t_bigint *b)
 {
-	int			i;
-	int			new_len;
-	t_bigint	*res;
+	int 		i;
+	int 		res_len;
+	t_bigint 	*res;
 
-	new_len = ft_max(a->length, b->length) + 1;
-	res = bigint_new(new_len);
+	res_len = ft_max(a->length, b->length) + 1;
+	res = bigint_new(res_len);
 	i = 0;
-	while (i < new_len)
+	while (i < res_len)
 	{
-		res->digits[i] += a->digits[i] + b->digits[i];
+		res->digits[i] += i < a->length ? a->digits[i] : 0;
+		res->digits[i] += i < b->length ? b->digits[i] : 0;
 		if (res->digits[i] > 9)
+		{
 			res->digits[i + 1]++;
+			res->digits[i] %= 10;
+		}
+		i++;
 	}
 	return (res);
 }

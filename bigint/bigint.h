@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   bigint.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 08:23:38 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/03 03:37:22 by mohamed          ###   ########.fr       */
+/*   Updated: 2019/11/08 14:59:14 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BIGINT_H
-# define BIGINT_H
-# define IS_NULL(x) (x) == NULL
+#define BIGINT_H
+#define IS_NULL(x) (x == NULL)
 
-typedef struct
+typedef struct	s_bigint
 {
-	char	*digits;
-	int		length;
-}			t_bigint;
+	char		*digits;
+	unsigned	length;
+}				t_bigint;
 
 t_bigint	*bigint_new(unsigned int size);
 t_bigint	*bigint_mult(t_bigint *a, t_bigint *b);
-t_bigint	*bigint_from_long(unsigned long n);
-t_bigint	*bigint_power(unsigned int b, unsigned int e);
+t_bigint	*bigint_from_long(unsigned long unbr);
+t_bigint	*bigint_power(unsigned int b, unsigned int exp);
 
 #endif
