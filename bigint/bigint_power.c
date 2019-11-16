@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:33:39 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/08 14:57:44 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/09 00:51:08 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bigint	*bigint_power(unsigned int b, unsigned int exp)
 	t_bigint	*base;
 
 	base = bigint_from_long(b);
-	if (exp == 0)
+	if (exp <= 0)
 		return bigint_from_long(1);
 	else if (exp == 1)
 		return base;

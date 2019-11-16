@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+         #
+#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/04 13:53:05 by mohamed          ###   ########.fr        #
+#    Updated: 2019/11/09 00:22:07 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,18 @@ SRC =	conv_di.c \
 		conv_o.c \
 		conv_c.c \
 		conv_s.c \
+		conv_f.c \
 		conv_percenatge.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
 		get_conv_function.c \
 		read_numbers.c
+
+BIGINT_OBJ = bigint/bigint_add.o \
+			bigint/bigint_mult.o \
+			bigint/bigint_power.o \
+			bigint/bigint_init.o \
 
 LIBFTOBJ =	libft/ft_autoalloc.o \
 			libft/ft_nbrlen.o \
@@ -103,23 +109,25 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFTOBJ)
-	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
+$(NAME): $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
+	ar rc $(NAME) $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 
-$(LIBFTOBJ):
-	make -C libft objs
+# $(LIBFTOBJ):
+# 	make -C libft objs
 
 main: main.c $(NAME)
 	gcc -o main main.c $(NAME)
 
 clean:
-	make -C libft clean
-	rm -f *.o
+	rm -f $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJS)
 
 fclean: clean
-	make -C libft fclean
 	rm -f $(NAME)
 	rm -f conv_d_test
+	rm -f conv_u_test
+	rm -f conv_o_test
+	rm -f conv_f_test
+	rm -f main
 
 re: fclean all
 
@@ -131,5 +139,7 @@ conv_u: $(NAME)
 
 conv_o: $(NAME)
 	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
+conv_f: $(NAME)
+	gcc $(CFLAGS) -o conv_f_test tests/conv_f.test.c $(NAME)
 
 .PHONY: all fclean re clean

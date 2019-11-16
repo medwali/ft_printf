@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:23:37 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/08 14:45:17 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/09 00:25:36 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_bigint	*bigint_add(t_bigint *a, t_bigint *b)
 {
-	int 		i;
-	int 		res_len;
+	unsigned int 		i;
+	unsigned int 		res_len;
 	t_bigint 	*res;
 
 	res_len = ft_max(a->length, b->length) + 1;
