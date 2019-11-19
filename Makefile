@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/09 00:22:07 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/19 19:07:46 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,15 @@ SRC =	conv_di.c \
 		parser.c \
 		util.c \
 		get_conv_function.c \
-		read_numbers.c
+		read_numbers.c \
+		get_whole.c \
+		get_fraction.c \
 
 BIGINT_OBJ = bigint/bigint_add.o \
 			bigint/bigint_mult.o \
 			bigint/bigint_power.o \
 			bigint/bigint_init.o \
+			bigint/bigint_util.o
 
 LIBFTOBJ =	libft/ft_autoalloc.o \
 			libft/ft_nbrlen.o \
@@ -139,6 +142,7 @@ conv_u: $(NAME)
 
 conv_o: $(NAME)
 	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
+
 conv_f: $(NAME)
 	gcc $(CFLAGS) -o conv_f_test tests/conv_f.test.c $(NAME)
 

@@ -6,58 +6,65 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/16 15:00:23 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/19 20:58:43 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-
-static long double read_long_doule(va_list *ap, t_length len)
+static int	get_spaces_len(t_conv_spec *conv_spec, t_bigint *whole,
+	int is_neg, int is_nan_inf)
 {
-	if (len == L)
-		return va_arg(*ap, long double);
-	return (long double)va_arg(*ap, double);
+	int width;
+	int precision;
+	int nbrlen;
+
+	precision = conv_spec->precision;
+	width = conv_spec->width;
+	if ((conv_spec->flags & FLAG_ZERO))
+		return (0);
+	nbrlen = 3;
+	if (is_nan_inf == 0)
+		nbrlen = whole->length + precision + 1;
+	return (width - nbrlen - (is_neg || (conv_spec->flags & FLAG_PLUS)));
 }
 
-// static int bit_at(unsigned nbr, int index)
-// {
-// 	return (((nbr >> index) & 1) == 1);
-// }
-
-// static	classify_ld(t_conv_spec *conv_spec, t_extended_db ext_db)
-// {
-// 	if (~(ext_db.ld_struct.exp) == 0 && bit_at(ext_db.ld_struct.mantissa, 63)
-// 	 && ext_db.m.fraction == 0)
-// 	{
-// 		write(1, "inf", 3);
-// 		return (0);
-// 	}
-
-// }
-
-static t_bigint *get_int(unsigned long mantissa, int shift)
+static char	*get_float(t_extended_db nbr, t_conv_spec *conv_spec,
+	t_bigint **whole, t_bigint **frac)
 {
-	t_bigint	*bg_int;
+	char			is_nan_inf;
 
-	if (shift < 0)
-		return (bigint_new(1));
-	mantissa = mantissa >> (shift < 64 ? 63 - shift : 0);
-	bg_int = bigint_from_long(mantissa);
-	return (bg_int);
+	*whole = NULL;
+	*frac = NULL;
+	if (~nbr.s.e == 0 && bit_is_set(nbr.s.m, 63) && (nbr.s.m << 1) == 0)
+		return (1);
+	if ((nbr.s.e && !bit_is_set(nbr.s.m, 63)) || (~nbr.s.e == 0 &&
+		bit_is_set(nbr.s.m, 63) && (nbr.s.m << 1)))
+		return (2);
+	(void)conv_spec;
+	*whole = get_whole(nbr.s.m, nbr.s.e - 16383);
+	*frac = get_fraction(nbr.s.m, nbr.s.e - 16383);
+
+	return (0);
 }
 
-int conv_f(t_conv_spec *conv_spec, va_list *ap)
+int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 {
-	t_extended_db	ext_db;
-	int				shift;
-	// t_bigint		*whole;
+	t_extended_db	nbr;
+	t_bigint		*whole;
+	t_bigint		*frac;
+	int				is_nan_inf;
+	int				spaces;
 
-	ext_db.ld = read_long_doule(ap, conv_spec->length);
-	shift = ext_db.ld_struct.exp - 16383;
-	// whole
-	ft_printf("%s", shift);
-	// get_int(ext_db.ld_struct.mantissa, shift);
+	nbr.val = read_long_doule(ap, conv_spec->length);
+	is_nan_inf = get_float(nbr, conv_spec, &whole, &frac);
+	spaces = get_spaces_len(conv_spec, whole, nbr.s.sign, is_nan_inf);
+	if ((conv_spec->flags & FLAG_MINUS) == 0)
+		ft_putnchar((conv_spec->flags & FLAG_ZERO) ? '0' : ' ', spaces);
+	if ((conv_spec->flags & FLAG_PLUS) || nbr.s.sign)
+		ft_putchar(nbr.s.sign ? '-' : '+');
+	if ((conv_spec->flags & FLAG_MINUS))
+		ft_putnchar(' ', spaces);
 	return (0);
 }

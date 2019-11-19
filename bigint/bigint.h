@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 08:23:38 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/09 00:23:50 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/19 10:04:17 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct	s_bigint
 t_bigint	*bigint_new(unsigned int size);
 t_bigint	*bigint_add(t_bigint *a, t_bigint *b);
 t_bigint	*bigint_mult(t_bigint *a, t_bigint *b);
-t_bigint	*bigint_from_long(unsigned long unbr);
+t_bigint	*bigint_from_uint128(__uint128_t unbr);
 t_bigint	*bigint_power(unsigned int b, unsigned int exp);
+void		bigint_print(t_bigint *bg_int);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 16:42:28 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/16 14:21:23 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/18 15:01:20 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_bigint 	*bigint_new(unsigned int size)
 	return (bg_int);
 }
 
-t_bigint 	*bigint_from_long(unsigned long unbr)
+t_bigint 	*bigint_from_uint128(__uint128_t unbr)
 {
 	int			len;
 	int			i;
@@ -34,6 +34,7 @@ t_bigint 	*bigint_from_long(unsigned long unbr)
 	while (i < len)
 	{
 		bg_int->digits[i] = unbr % 10;
+
 		unbr /= 10;
 		i++;
 	}

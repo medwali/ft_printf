@@ -6,13 +6,13 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 16:31:50 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/08 21:40:57 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/19 16:49:49 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int is_in_str(int c, char *str)
+int		is_in_str(int c, char *str)
 {
 	while (*str)
 		if (*str++ == c)
@@ -20,14 +20,14 @@ int is_in_str(int c, char *str)
 	return (0);
 }
 
-void put_octal(unsigned long long decimal)
+void	put_octal(unsigned long decimal)
 {
 	if (decimal / 8)
 		put_octal(decimal / 8);
 	ft_putchar(decimal % 8 + '0');
 }
 
-void print_bits(unsigned long long nbr, int size)
+void	print_bits(__uint128_t nbr, int size)
 {
 	while (size--)
 	{
@@ -36,4 +36,9 @@ void print_bits(unsigned long long nbr, int size)
 		else
 			ft_putchar('1');
 	}
+}
+
+int		bit_is_set(unsigned long nbr, int index)
+{
+	return (((nbr >> index) & 1) == 1);
 }

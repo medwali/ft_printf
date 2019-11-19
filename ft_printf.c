@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/08 15:33:09 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/19 19:47:15 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <unistd.h>
 #include <stddef.h>
 
-int ft_printf(char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list ap;
-	int parse_ret;
-	int ret;
+	int		parse_ret;
+	int		ret;
 
 	ret = 0;
 	parse_ret = 0;
@@ -31,7 +31,7 @@ int ft_printf(char *format, ...)
 		{
 			parse_ret = parse_conversion(&format, &ap);
 			if (parse_ret == -1)
-				break;
+				break ;
 			else
 				ret += parse_ret;
 		}
