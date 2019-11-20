@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:32:01 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/19 17:03:27 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 11:13:06 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,7 @@ static t_bigint const	g_exps[] = {
 t_bigint				*get_fraction(unsigned long mantissa, int exp)
 {
 	t_bigint	*res;
+	t_bigint	*tmp;
 	int			i;
 	int			pow;
 
@@ -289,13 +290,16 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 		pow--;
 		i++;
 	}
-	while (*res->digits == 0 && res->length)
+	while (*res->digits == 0 && res->length > 0)
 	{
 		res->length--;
 		res->digits++;
 	}
 	if (exp < -1)
-		res = bigint_mult(bigint_add(bigint_power(5, -(exp + 1)),
-			bigint_new(-(exp + 1))), res);
+	{
+		tmp = bigint_add(bigint_power(5, -(exp + 1)), bigint_new(-(exp + 1)));
+		tmp->length -= tmp->digits[tmp->length - 1] == 0 ? 1 : 0;
+		res = bigint_mult(tmp, res);
+	}
 	return (res);
 }
