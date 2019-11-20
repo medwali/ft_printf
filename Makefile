@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/19 19:07:46 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/20 10:17:00 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	conv_di.c \
 		read_numbers.c \
 		get_whole.c \
 		get_fraction.c \
+		round_float.c
 
 BIGINT_OBJ = bigint/bigint_add.o \
 			bigint/bigint_mult.o \
