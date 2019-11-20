@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/20 12:40:20 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 19:21:03 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static int	get_spaces_len(t_conv_spec *conv_spec, t_bigint *whole,
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
-	if ((conv_spec->flags & FLAG_ZERO))
-		return (0);
 	len = 3;
 	if (is_nan_inf == 0)
 		len = whole->length + precision + 1;
@@ -36,10 +34,8 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 	*whole = NULL;
 	*frac = NULL;
 	conv_spec->precision = conv_spec->is_pset ? conv_spec->precision : 6;
-	// (~ldbl.exp == 0 && ldbl.m.int_bit && ldbl.m.fraction == 0)
 	if (~nbr.s.e == 0 && bit_is_set(nbr.s.m, 63) && (nbr.s.m << 1) == 0)
 		return (1);
-	// if ((ldbl.exp && ldbl.m.int_bit == 0) || (~ldbl.exp == 0 && ldbl.m.int_bit && ldbl.m.fraction))
 	if ((nbr.s.e && !bit_is_set(nbr.s.m, 63)) || (~nbr.s.e == 0 &&
 		bit_is_set(nbr.s.m, 63) && (nbr.s.m << 1)))
 		return (2);
@@ -61,6 +57,27 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 	return (0);
 }
 
+static void	print_float(t_conv_spec *conv_spec, t_bigint *whole, t_bigint *frac)
+{
+	bigint_print(whole);
+	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
+		(conv_spec->flags & FLAG_HASH))
+		ft_putchar('.');
+	bigint_print(frac);
+}
+
+static int	get_printed_len(t_conv_spec *conv_spec, t_bigint *whole,
+	t_bigint *frac, int spaces)
+{
+	int res;
+
+	res = POS_ZERO(spaces) + whole->length + frac->length;
+	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
+		(conv_spec->flags & FLAG_HASH))
+		res += 1;
+	return (res);
+}
+
 int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 {
 	t_extended_db	nbr;
@@ -79,14 +96,8 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	if (is_nan_inf)
 		ft_putstr(is_nan_inf == 1 ? "inf" : "nan");
 	else
-	{
-		bigint_print(whole);
-		if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
-			(conv_spec->flags & FLAG_HASH))
-			ft_putchar('.');
-		bigint_print(frac);
-	}
+		print_float(conv_spec, whole, frac);
 	if ((conv_spec->flags & FLAG_MINUS))
 		ft_putnchar(' ', spaces);
-	return (0);
+	return (get_printed_len(conv_spec, whole, frac, spaces));
 }
