@@ -6,17 +6,17 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 15:08:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/01 10:40:01 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 19:40:25 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	long num;
-	char *res;
-	int i;
+	long	num;
+	char	*res;
+	int		i;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));

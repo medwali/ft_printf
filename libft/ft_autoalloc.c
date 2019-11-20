@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_autoalloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 20:41:59 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/02 23:13:22 by mohamed          ###   ########.fr       */
+/*   Updated: 2019/11/20 19:29:05 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_alloc_list *g_allocs;
 
-void	ft_autofree_all()
+void	ft_autofree_all(void)
 {
 	t_alloc_list	*tmp;
 
@@ -34,7 +34,7 @@ void	*ft_autoalloc(size_t size)
 	t_alloc_list	*node;
 	t_alloc_list	*tmp;
 
-	if((ptr = ft_memalloc(size)) == NULL || 
+	if ((ptr = ft_memalloc(size)) == NULL ||
 			(node = (t_alloc_list*)ft_memalloc(sizeof(t_alloc_list))) == NULL)
 	{
 		free(ptr);
@@ -47,7 +47,7 @@ void	*ft_autoalloc(size_t size)
 	else
 	{
 		tmp = g_allocs;
-		while(tmp->next)
+		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = node;
 	}
