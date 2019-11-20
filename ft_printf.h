@@ -6,60 +6,78 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 22:55:27 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/20 23:19:09 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include "./libft/libft.h"
-#include <stdarg.h>
+# include "bigint/bigint.h"
+# include "libft/libft.h"
+# include <stdarg.h>
 
-#define FLAG_ZERO 1U
-#define FLAG_HASH 2U
-#define FLAG_SPACE 4U
-#define FLAG_PLUS 8U
-#define FLAG_MINUS 16U
-#define FLAG_QUOTE 32U
-#define IS_DIGIT(x) '0' <= x &&x <= '9'
-#define ABS(number) number > 0 ? number : (-1) * number
-#define POSITIVE_OR_ZERO(x) x < 0 ? 0 : x
-#define MAX(a, b) (a > b ? a : b)
+# define FLAG_ZERO 1U
+# define FLAG_HASH 2U
+# define FLAG_SPACE 4U
+# define FLAG_PLUS 8U
+# define FLAG_MINUS 16U
+# define IS_DIGIT(x) '0' <= x && x <= '9'
+# define ABS(number) number > 0 ? number : (-1) * number
+# define POS_ZERO(number) number > 0 ? number : 0
 
-typedef enum
+typedef	enum	e_length
 {
 	HH = 1,
 	H,
 	L,
 	LL,
 	CAPITAL_L
-} t_length;
-typedef struct
-{
-	unsigned int flags;
-	int width;
-	int is_pset;
-	int precision;
-	t_length length;
-	char conv_char;
-} t_conv_spec;
+}				t_length;
 
-int parse_conversion(char **conv_str, va_list *ap);
-int (*get_conv_function(int c))(t_conv_spec *, va_list *);
-int is_in_str(int c, char *str);
-int ft_printf(char *format, ...);
-int conv_di(t_conv_spec *conv_spec, va_list *ap);
-int conv_u(t_conv_spec *conv_spec, va_list *ap);
-int conv_o(t_conv_spec *conv_spec, va_list *ap);
-int conv_percenatge(t_conv_spec *conv_spec, va_list *ap);
-long long read_int(va_list *ap, t_length len);
-unsigned long long read_uint(va_list *ap, t_length len);
-void put_octal(unsigned long long decimal);
-int  not_implemented(t_conv_spec *conv_spec, va_list *ap);
-int	conv_c(t_conv_spec *conv_spec, va_list *ap);
-int	conv_s(t_conv_spec *conv_spec, va_list *ap);
-int conv_x(t_conv_spec *conv_spec, va_list *ap);
-int conv_p(t_conv_spec *conv_spec, va_list *ap);
+typedef struct	s_conv_spec
+{
+	unsigned int	flags;
+	int				width;
+	int				is_pset;
+	int				precision;
+	t_length		length;
+	char			conv_char;
+}				t_conv_spec;
+
+typedef union	u_extended_db
+{
+	long double	val;
+	__uint128_t unbr;
+	struct
+	{
+		unsigned long	m : 64;
+		unsigned long	e : 15;
+		unsigned long	sign : 1;
+	}			s;
+}				t_extended_db;
+
+int					parse_conversion(char **conv_str, va_list *ap);
+int					(*get_conv_function(int c))(t_conv_spec *, va_list *);
+int					is_in_str(int c, char *str);
+int					ft_printf(char *format, ...);
+int					conv_di(t_conv_spec *conv_spec, va_list *ap);
+int					conv_u(t_conv_spec *conv_spec, va_list *ap);
+int					conv_o(t_conv_spec *conv_spec, va_list *ap);
+int					conv_c(t_conv_spec *conv_spec, va_list *ap);
+int					conv_s(t_conv_spec *conv_spec, va_list *ap);
+int					conv_percenatge(t_conv_spec *conv_spec, va_list *ap);
+long long			read_int(va_list *ap, t_length len);
+unsigned long long	read_uint(va_list *ap, t_length len);
+void				put_octal(unsigned long decimal);
+int					conv_f(t_conv_spec *conv_spec, va_list *ap);
+void				print_bits(__uint128_t nbr, int size);
+t_bigint			*get_whole(unsigned long mantissa, int exp);
+t_bigint			*get_fraction(unsigned long mantissa, int exp);
+int					bit_is_set(unsigned long nbr, int index);
+long double			read_long_doule(va_list *ap, t_length len);
+void				round_float(t_bigint **whole, t_bigint **frac, int precis);
+int 				conv_x(t_conv_spec *conv_spec, va_list *ap);
+int 				conv_p(t_conv_spec *conv_spec, va_list *ap);
 
 #endif

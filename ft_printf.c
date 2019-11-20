@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 22:53:34 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/20 23:15:22 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include <stdarg.h>
 
 
-int ft_printf(char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list ap;
-	int parse_ret;
-	int ret;
+	int		parse_ret;
+	int		ret;
 
 	ret = 0;
 	parse_ret = 0;
@@ -32,6 +32,10 @@ int ft_printf(char *format, ...)
 		{
 			parse_ret = parse_conversion(&format, &ap);
 			continue ;
+			if (parse_ret == -1)
+				break ;
+			else
+				ret += parse_ret;
 		}
 		if (parse_ret == -1)
 			break;

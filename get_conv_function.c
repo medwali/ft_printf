@@ -6,13 +6,13 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 22:57:31 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/20 23:19:41 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
 
-int (*get_conv_function(int c))(t_conv_spec *, va_list *)
+int	(*get_conv_function(int c))(t_conv_spec *, va_list *)
 {
 	if (c == 'd' || c == 'i')
 		return (&conv_di);
@@ -24,6 +24,8 @@ int (*get_conv_function(int c))(t_conv_spec *, va_list *)
 		return (&conv_c);
 	if (c == 's')
 		return (&conv_s);
+	if (c == 'f')
+		return (&conv_f);
 	if (c == '%')
 		return (&conv_percenatge);
 	if (c == 'x' || c == 'X')

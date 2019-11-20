@@ -6,10 +6,9 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 12:36:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 13:21:19 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 19:33:51 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

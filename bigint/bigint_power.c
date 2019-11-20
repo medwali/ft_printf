@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   bigint_power.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 15:08:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 19:40:25 by ylagtab          ###   ########.fr       */
+/*   Created: 2019/11/01 16:33:39 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/11/18 14:56:27 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_itoa(int n)
+t_bigint	*bigint_power(unsigned int b, unsigned int exp)
 {
-	long	num;
-	char	*res;
-	int		i;
+	t_bigint	*res;
+	t_bigint	*base;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	num = n >= 0 ? n : -n;
-	if ((res = ft_strnew(ft_nbrlen(n) + (n < 0 ? 1 : 0))) == NULL)
-		return (NULL);
-	i = 0;
-	res[i] = '0';
-	while (num / 10 != 0 || num % 10 != 0)
+	base = bigint_from_uint128(b);
+	if (exp <= 0)
+		return bigint_from_uint128(1);
+	else if (exp == 1)
+		return base;
+	res = bigint_from_uint128(1);
+	while (exp > 1)
 	{
-		res[i++] = num % 10 + '0';
-		num = num / 10;
+		if (exp % 2)
+		{
+			res = bigint_mult(res,base);
+			exp--;
+		}
+		exp /= 2;
+		base = bigint_mult(base,base);
 	}
-	if (n < 0)
-		res[i] = '-';
-	ft_strrev(res);
+	res = bigint_mult(res,base);
 	return (res);
 }

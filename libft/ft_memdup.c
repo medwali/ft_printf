@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_memdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 21:33:29 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 19:29:39 by ylagtab          ###   ########.fr       */
+/*   Created: 2019/11/01 16:08:22 by mel-idri          #+#    #+#             */
+/*   Updated: 2019/11/20 19:31:58 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+void	*ft_memdup(void *dst, const void *src, size_t n)
 {
-	return (32 <= c && c <= 126);
+	size_t i;
+
+	dst = ft_autoalloc(n);
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
 }

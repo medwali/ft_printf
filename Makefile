@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/20 22:37:53 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/20 23:14:47 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =	conv_di.c \
 		conv_o.c \
 		conv_c.c \
 		conv_s.c \
+		conv_f.c \
 		conv_percenatge.c \
 		conv_x.c \
 		conv_p.c \
@@ -28,9 +29,19 @@ SRC =	conv_di.c \
 		parser.c \
 		util.c \
 		get_conv_function.c \
-		read_numbers.c
+		read_numbers.c \
+		get_whole.c \
+		get_fraction.c \
+		round_float.c
 
-LIBFTOBJ =	libft/ft_nbrlen.o \
+BIGINT_OBJ = bigint/bigint_add.o \
+			bigint/bigint_mult.o \
+			bigint/bigint_power.o \
+			bigint/bigint_init.o \
+			bigint/bigint_util.o
+
+LIBFTOBJ =	libft/ft_autoalloc.o \
+			libft/ft_nbrlen.o \
 			libft/ft_nbrlen_base.o \
 			libft/ft_atoi.o \
 			libft/ft_bzero.o \
@@ -106,21 +117,22 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFTOBJ) 
-	ar rc $(NAME) $(OBJ) $(LIBFTOBJ)
-
+$(NAME): $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
+	ar rc $(NAME) $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 
 main: main.c $(NAME)
 	gcc -o main main.c $(NAME)
 
 clean:
-	make -C libft clean
-	rm -f *.o
+	rm -f $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJS)
 
 fclean: clean
-	make -C libft fclean
 	rm -f $(NAME)
 	rm -f conv_d_test
+	rm -f conv_u_test
+	rm -f conv_o_test
+	rm -f conv_f_test
+	rm -f main
 
 re: fclean all
 
@@ -132,5 +144,8 @@ conv_u: $(NAME)
 
 conv_o: $(NAME)
 	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
+
+conv_f: $(NAME)
+	gcc $(CFLAGS) -o conv_f_test tests/conv_f.test.c $(NAME)
 
 .PHONY: all fclean re clean

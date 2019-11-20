@@ -6,11 +6,11 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 00:05:39 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 13:13:52 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 19:32:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_nbrlen_base(unsigned long long n, int base)
+int	ft_nbrlen_base(unsigned long long n, int base)
 {
 	int i;
 

@@ -6,13 +6,13 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 18:38:08 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/19 20:17:14 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void parse_flags(t_conv_spec *conv_spec, char **conv)
+static void	parse_flags(t_conv_spec *conv_spec, char **conv)
 {
 	while (1)
 	{
@@ -29,7 +29,7 @@ void parse_flags(t_conv_spec *conv_spec, char **conv)
 		else if (**conv == '\'')
 			conv_spec->flags |= FLAG_QUOTE;
 		else
-			break;
+			break ;
 		(*conv)++;
 	}
 	if (conv_spec->flags & FLAG_MINUS && conv_spec->flags & FLAG_ZERO)
@@ -38,7 +38,7 @@ void parse_flags(t_conv_spec *conv_spec, char **conv)
 		conv_spec->flags ^= FLAG_SPACE;
 }
 
-void parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
+static void	parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
 {
 	if ('1' <= **conv && **conv <= '9')
 	{
@@ -53,7 +53,7 @@ void parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
 	}
 }
 
-void parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
+static void	parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
 {
 	if (**conv == '.')
 	{
@@ -61,7 +61,7 @@ void parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
 		conv_spec->is_pset = 1;
 	}
 	else
-		return;
+		return ;
 	if (IS_DIGIT(**conv))
 	{
 		conv_spec->precision = ft_atoi(*conv);

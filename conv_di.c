@@ -6,13 +6,13 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 14:11:56 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 12:15:32 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+static int	get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 {
 	int width;
 	int precision;
@@ -25,7 +25,7 @@ static int get_spaces_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 					(nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
 }
 
-static int get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
+static int	get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 {
 	int width;
 	int precision;
@@ -39,19 +39,12 @@ static int get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len)
 	return (0);
 }
 
-int get_printed_len(unsigned int flags, int is_neg, int nbr_len, int spaces, int zeros)
+int			conv_di(t_conv_spec *conv_spec, va_list *ap)
 {
-	spaces = spaces > 0 ? spaces : 0;
-	zeros = zeros > 0 ? zeros : 0;
-	return (spaces + zeros + nbr_len + (is_neg || (flags & FLAG_PLUS)));
-}
-
-int conv_di(t_conv_spec *conv_spec, va_list *ap)
-{
-	long long nbr;
-	int nbr_len;
-	int spaces;
-	int zeros;
+	long long	nbr;
+	int			nbr_len;
+	int			spaces;
+	int			zeros;
 
 	nbr = read_int(ap, conv_spec->length);
 	nbr_len = ft_nbrlen(ABS(nbr));
@@ -70,5 +63,6 @@ int conv_di(t_conv_spec *conv_spec, va_list *ap)
 		ft_putunbr(ABS(nbr));
 	if (conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', spaces);
-	return (get_printed_len(conv_spec->flags, nbr < 0, nbr_len, spaces, zeros));
+	return (POS_ZERO(spaces) + POS_ZERO(zeros) + nbr_len +
+		(nbr < 0 || (conv_spec->flags & FLAG_PLUS)));
 }
