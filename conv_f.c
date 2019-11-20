@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/20 12:00:44 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 12:40:20 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 {
 	*whole = NULL;
 	*frac = NULL;
+	conv_spec->precision = conv_spec->is_pset ? conv_spec->precision : 6;
 	// (~ldbl.exp == 0 && ldbl.m.int_bit && ldbl.m.fraction == 0)
 	if (~nbr.s.e == 0 && bit_is_set(nbr.s.m, 63) && (nbr.s.m << 1) == 0)
 		return (1);
@@ -51,7 +52,7 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 	*whole = get_whole(nbr.s.m, nbr.s.e - 16383);
 	*frac = get_fraction(nbr.s.m, nbr.s.e - 16383);
 	if (conv_spec->precision < (int)(*frac)->length)
-		round_float(whole, frac, conv_spec->is_pset ? conv_spec->precision : 6);
+		round_float(whole, frac, conv_spec->precision);
 	while ((int)(*frac)->length > conv_spec->precision)
 	{
 		(*frac)->length--;
@@ -75,8 +76,6 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 		ft_putnchar((conv_spec->flags & FLAG_ZERO) ? '0' : ' ', spaces);
 	if ((conv_spec->flags & FLAG_PLUS) || nbr.s.sign)
 		ft_putchar(nbr.s.sign ? '-' : '+');
-	ft_printf("\nis_nan_inf : %d\n", is_nan_inf);
-	return (0);
 	if (is_nan_inf)
 		ft_putstr(is_nan_inf == 1 ? "inf" : "nan");
 	else
