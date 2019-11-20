@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
+#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/10/03 14:43:36 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/20 22:37:53 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC =	conv_di.c \
 		conv_c.c \
 		conv_s.c \
 		conv_percenatge.c \
+		conv_x.c \
+		conv_p.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
@@ -96,17 +98,17 @@ LIBFTOBJ =	libft/ft_nbrlen.o \
 			libft/ft_strsub.o \
 			libft/ft_strtrim.o \
 			libft/ft_tolower.o \
-			libft/ft_toupper.o
+			libft/ft_toupper.o \
+			libft/digit_len_base.o \
+			libft/ft_putunbr_base.o
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFTOBJ)
-	ar urc $(NAME) $(OBJ) $(LIBFTOBJ)
+$(NAME): $(OBJ) $(LIBFTOBJ) 
+	ar rc $(NAME) $(OBJ) $(LIBFTOBJ)
 
-$(LIBFTOBJ):
-	make -C libft objs
 
 main: main.c $(NAME)
 	gcc -o main main.c $(NAME)

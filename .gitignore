@@ -11,3 +11,6 @@ libft/libft.a
 **/.DS_Store
 tests/
 tests/*
+important
+.gitignore
+.vscode

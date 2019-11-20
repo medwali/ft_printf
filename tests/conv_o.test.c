@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_o.test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 14:07:20 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/10/01 11:29:50 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 23:13:12 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 #include <stdio.h>
 int main()
 {
-
-	ft_printf("@moulitest: %o", 0);
-	printf("@moulitest: %o", 0);
-	return (0);
+    ft_printf("d      : |%d|\n", 1337);
+    ft_printf("+d     : |%+d|\n", 1337);
+    ft_printf("10d    : |%10d|\n", 1337);
+    ft_printf("-10d   : |%-10d|\n", 1337);
+    ft_printf("10.6d  : |%10.6d|\n", 1337);
+    ft_printf("10.6d  : |%.10d|\n", -1337);
+	printf("p10.6d : |%.10d|\n", -1337);
+    ft_printf("-10.6d : |%-10.6d|\n", 1337);
+    ft_printf("+10.6d : |%+.10d|\n", 1337);
+	printf("p+10.6 : |%+.10d|\n", 1337);
+    ft_printf("010d   : |%010d|\n", 1337);
+    ft_printf("010.6d : |%010.6d|\n", 1337);
+    return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_conv_function.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/07 14:25:54 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 22:57:31 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ int (*get_conv_function(int c))(t_conv_spec *, va_list *)
 		return (&conv_s);
 	if (c == '%')
 		return (&conv_percenatge);
-	return (&not_implemented);
+	if (c == 'x' || c == 'X')
+		return (&conv_x);
+	if (c == 'p')
+		return (&conv_p);
+	return (NULL);
 }

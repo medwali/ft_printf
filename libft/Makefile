@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
+#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 18:54:50 by mel-idri          #+#    #+#              #
-#    Updated: 2019/10/12 20:15:34 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/20 22:58:28 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ CC = gcc
 
 SRC =	ft_nbrlen.c \
 		ft_nbrlen_base.c \
+		digit_len.c \
+		digit_len_base.c \
 		ft_atoi.c \
 		ft_bzero.c \
 		ft_isalnum.c \
@@ -84,7 +86,8 @@ SRC =	ft_nbrlen.c \
 		ft_strsub.c \
 		ft_strtrim.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		ft_putunbr_base.c
 
 OBJ = $(SRC:.c=.o)
 

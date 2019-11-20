@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/07 14:19:57 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 22:53:34 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
+#include <stdarg.h>
+
 
 int ft_printf(char *format, ...)
 {
@@ -29,11 +31,10 @@ int ft_printf(char *format, ...)
 		if (*format == '%')
 		{
 			parse_ret = parse_conversion(&format, &ap);
-			if (parse_ret == -1)
-				break;
-			else
-				ret += parse_ret;
+			continue ;
 		}
+		if (parse_ret == -1)
+			break;
 		else
 			ret += write(1, format++, 1);
 	}
