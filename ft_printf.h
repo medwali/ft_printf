@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/19 20:20:37 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/20 09:34:19 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define FLAG_QUOTE 32U
 # define IS_DIGIT(x) '0' <= x && x <= '9'
 # define ABS(number) number > 0 ? number : (-1) * number
+# define POS_ZERO(number) number > 0 ? number : 0
 
 typedef	enum	e_length
 {
