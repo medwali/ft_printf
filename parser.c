@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:57:11 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 19:47:17 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ int			parse_conversion(char **conv_str, va_list *ap)
 	if (is_in_str(*c_str, "cspdiouxXf%"))
 	{
 		conv_spec.conv_char = *c_str;
-		*conv_str = c_str;
-		return (apply_conv_function(&conv_spec, ap, *c_str));
+		*conv_str = ++c_str;
+		return (apply_conv_function(&conv_spec, ap, *(c_str - 1)));
 	}
 	else
 		return (0);
