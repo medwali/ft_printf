@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 14:24:44 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 16:57:11 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
 	}
 }
 
-void parse_length(t_conv_spec *conv_spec, char **conv)
+void		parse_length(t_conv_spec *conv_spec, char **conv)
 {
 	if (**conv == 'h' && *((*conv) + 1) == 'h')
 	{
@@ -102,10 +102,10 @@ void parse_length(t_conv_spec *conv_spec, char **conv)
 	}
 }
 
-int parse_conversion(char **conv_str, va_list *ap)
+int			parse_conversion(char **conv_str, va_list *ap)
 {
-	t_conv_spec conv_spec;
-	char *c_str;
+	t_conv_spec	conv_spec;
+	char		*c_str;
 
 	c_str = *conv_str;
 	ft_bzero(&conv_spec, sizeof(t_conv_spec));
@@ -118,7 +118,7 @@ int parse_conversion(char **conv_str, va_list *ap)
 	{
 		conv_spec.conv_char = *c_str;
 		*conv_str = c_str;
-		return (get_conv_function(*(*conv_str)++)(&conv_spec, ap));
+		return (apply_conv_function(&conv_spec, ap, *c_str));
 	}
 	else
 		return (0);

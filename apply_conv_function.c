@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_conv_function.c                                :+:      :+:    :+:   */
+/*   apply_conv_function.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 23:19:41 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:58:33 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
 
-int	(*get_conv_function(int c))(t_conv_spec *, va_list *)
+int	apply_conv_function(t_conv_spec *conv_spec, va_list *ap, int c)
 {
 	if (c == 'd' || c == 'i')
-		return (&conv_di);
+		return (conv_di(conv_spec, ap));
 	if (c == 'u')
-		return (&conv_u);
+		return (conv_u(conv_spec, ap));
 	if (c == 'o')
-		return (&conv_o);
+		return (conv_o(conv_spec, ap));
 	if (c == 'c')
-		return (&conv_c);
+		return (conv_c(conv_spec, ap));
 	if (c == 's')
-		return (&conv_s);
+		return (conv_s(conv_spec, ap));
 	if (c == 'f')
-		return (&conv_f);
+		return (conv_f(conv_spec, ap));
 	if (c == '%')
-		return (&conv_percenatge);
+		return (conv_percenatge(conv_spec));
 	if (c == 'x' || c == 'X')
-		return (&conv_x);
+		return (conv_x(conv_spec, ap));
 	if (c == 'p')
-		return (&conv_p);
-	return (NULL);
+		return (conv_p(conv_spec, ap));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:23:37 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:22:47 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 16:59:58 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bigint		*bigint_add(t_bigint *a, t_bigint *b)
 	if (a == NULL || b == NULL)
 		return (NULL);
 	res_len = ft_max(a->length, b->length) + 1;
-	if ((res = bigint_new(res_len)) == -1)
+	if ((res = bigint_new(res_len)) == NULL)
 		return (NULL);
 	i = 0;
 	while (i < res_len)

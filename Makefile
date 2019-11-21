@@ -6,7 +6,7 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/21 15:12:14 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/21 16:58:50 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC =	conv_di.c \
 		ft_printf.c \
 		parser.c \
 		util.c \
-		get_conv_function.c \
+		apply_conv_function.c \
 		read_numbers.c \
 		get_whole.c \
 		get_fraction.c \

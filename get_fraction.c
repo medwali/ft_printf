@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:32:01 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 16:22:00 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 17:03:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ static t_bigint const	g_exps[] = {
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 64}
 };
 
-static t_bigint	*read_mantissa(unsigned long mantissa, int exp)
+static t_bigint			*read_mantissa(unsigned long mantissa, int exp)
 {
 	t_bigint	*res;
 	int			i;
@@ -282,11 +282,12 @@ static t_bigint	*read_mantissa(unsigned long mantissa, int exp)
 	while (pow >= 0)
 	{
 		if ((mantissa >> pow) & 1)
-			if ((res = bigint_add(res, (t_bigint*)&g_exps[i])) == -1)
-				return (-1);
+			if ((res = bigint_add(res, (t_bigint*)&g_exps[i])) == NULL)
+				return (NULL);
 		pow--;
 		i++;
 	}
+	return (res);
 }
 
 t_bigint				*get_fraction(unsigned long mantissa, int exp)
@@ -296,8 +297,8 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 
 	if (exp >= 63)
 		return (bigint_new(1));
-	if ((res = bigint_new(0)) == -1)
-		return (-1);
+	if ((res = bigint_new(0)) == NULL)
+		return (NULL);
 	res = read_mantissa(mantissa, exp);
 	while (*res->digits == 0 && res->length > 0)
 	{
@@ -307,11 +308,11 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 	if (exp < -1)
 	{
 		if ((tmp = bigint_add(bigint_power(5, -(exp + 1)),
-			bigint_new(-(exp + 1)))) == -1)
-			return (-1);
+			bigint_new(-(exp + 1)))) == NULL)
+			return (NULL);
 		tmp->length -= tmp->digits[tmp->length - 1] == 0 ? 1 : 0;
-		if ((res = bigint_mult(tmp, res)) == -1)
-			return (-1);
+		if ((res = bigint_mult(tmp, res)) == NULL)
+			return (NULL);
 	}
 	return (res);
 }

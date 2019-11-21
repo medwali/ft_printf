@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:18:31 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:18:09 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 17:10:37 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		increment_float(t_bigint **whole, t_bigint **frac, int precision)
 		if ((*whole = bigint_add(*whole, bigint_from_uint128(1))) == NULL)
 			return (-1);
 		(*frac)->length = 0;
-		return ;
+		return (0);
 	}
 	frac_part_length = (*frac)->length;
 	if ((added_number = bigint_new((*frac)->length - precision + 1)) == NULL)
@@ -37,32 +37,34 @@ int		increment_float(t_bigint **whole, t_bigint **frac, int precision)
 		if ((*frac = bigint_new(1)) == NULL)
 			return (-1);
 	}
+	return (0);
 }
 
-int		round_float(t_bigint **whole, t_bigint **frac, int precision)
+int		round_float(t_bigint **whole, t_bigint **frac, int precis)
 {
 	int	index;
 
-	index = (*frac)->length - precision - 1;
+	index = (*frac)->length - precis - 1;
 	if (index < 0)
 		return (0);
 	if ((*frac)->digits[index] > 5)
-		if ((increment_float(whole, frac, precision)) == -1)
+		if ((increment_float(whole, frac, precis)) == -1)
 			return (-1);
-	if ((*frac)->digits[index] == 5)
-		if ((precision == 0 && (*whole)->digits[0] % 2) ||
-			(precision != 0 && (*frac)->digits[index + 1] % 2))
-			if ((increment_float(whole, frac, precision)) == NULL)
-				return (-1);
-			else
-			{
-				while (--index >= 0)
-					if ((*frac)->digits[index])
-					{
-						if ((increment_float(whole, frac, precision)) == NULL)
-							return (-1);
-						break ;
-					}
-			}
+	if ((*frac)->digits[index] == 5 && ((precis == 0 && (*whole)->digits[0] % 2)
+		|| (precis != 0 && (*frac)->digits[index + 1] % 2)))
+	{
+		if ((increment_float(whole, frac, precis)) == -1)
+			return (-1);
+		else
+		{
+			while (--index >= 0)
+				if ((*frac)->digits[index])
+				{
+					if ((increment_float(whole, frac, precis)) == -1)
+						return (-1);
+					break ;
+				}
+		}
+	}
 	return (0);
 }

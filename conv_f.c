@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 16:19:50 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 17:10:59 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 	if ((*frac = get_fraction(nbr.s.m, nbr.s.e - 16383)) == NULL)
 		return (-1);
 	if (conv_spec->precision < (int)(*frac)->length)
-		if (round_float(whole, frac, conv_spec->precision) == NULL)
+		if (round_float(whole, frac, conv_spec->precision) == -1)
 			return (-1);
 	while ((int)(*frac)->length > conv_spec->precision)
 	{
