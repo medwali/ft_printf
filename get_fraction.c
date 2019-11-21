@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:32:01 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/20 11:13:06 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 15:36:44 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,13 +280,15 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 
 	if (exp >= 63)
 		return (bigint_new(1));
-	res = bigint_new(0);
+	if ((res = bigint_new(0)) == -1)
+		return (-1);
 	pow = exp >= 0 ? 62 - exp : 63;
 	i = 0;
 	while (pow >= 0)
 	{
 		if ((mantissa >> pow) & 1)
-			res = bigint_add(res, (t_bigint*)&g_exps[i]);
+			if ((res = bigint_add(res, (t_bigint*)&g_exps[i])) == -1)
+				return (-1);
 		pow--;
 		i++;
 	}
@@ -297,9 +299,12 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 	}
 	if (exp < -1)
 	{
-		tmp = bigint_add(bigint_power(5, -(exp + 1)), bigint_new(-(exp + 1)));
+		if ((tmp = bigint_add(bigint_power(5, -(exp + 1)),
+			bigint_new(-(exp + 1)))) == -1)
+			return (-1);
 		tmp->length -= tmp->digits[tmp->length - 1] == 0 ? 1 : 0;
-		res = bigint_mult(tmp, res);
+		if ((res = bigint_mult(tmp, res)) == -1)
+			return (-1);
 	}
 	return (res);
 }

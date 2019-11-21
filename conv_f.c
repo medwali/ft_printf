@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   conv_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/20 22:21:09 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:18:12 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-static int	get_spaces_len(t_conv_spec *conv_spec, t_bigint *whole,
+static int	get_width(t_conv_spec *conv_spec, t_bigint *whole,
 	int is_neg, int is_nan_inf)
 {
 	int width;
@@ -41,14 +40,19 @@ static int	get_float(t_extended_db nbr, t_conv_spec *conv_spec,
 		return (2);
 	if (nbr.s.e == 0 && nbr.s.m == 0)
 	{
-		*whole = bigint_new(1);
-		*frac = bigint_new(conv_spec->precision);
+		if ((*whole = bigint_new(1)) == NULL)
+			return (-1);
+		if ((*frac = bigint_new(conv_spec->precision)) == NULL)
+			return (-1);
 		return (0);
 	}
-	*whole = get_whole(nbr.s.m, nbr.s.e - 16383);
-	*frac = get_fraction(nbr.s.m, nbr.s.e - 16383);
+	if ((*whole = get_whole(nbr.s.m, nbr.s.e - 16383)) == NULL)
+		return (-1);
+	if ((*frac = get_fraction(nbr.s.m, nbr.s.e - 16383)) == NULL)
+		return (-1);
 	if (conv_spec->precision < (int)(*frac)->length)
-		round_float(whole, frac, conv_spec->precision);
+		if (round_float(whole, frac, conv_spec->precision) == NULL)
+			return (-1);
 	while ((int)(*frac)->length > conv_spec->precision)
 	{
 		(*frac)->length--;
@@ -67,15 +71,15 @@ static void	print_float(t_conv_spec *conv_spec, t_bigint *whole, t_bigint *frac)
 }
 
 static int	get_printed_len(t_conv_spec *conv_spec, t_bigint *whole,
-	t_bigint *frac, int spaces)
+	t_bigint *frac, int width)
 {
 	int res;
 	int	w_len;
 	int	f_len;
-	
+
 	w_len = whole == NULL ? 0 : whole->length;
 	f_len = frac == NULL ? 0 : frac->length;
-	res = POS_ZERO(spaces) + w_len + f_len;
+	res = POS_ZERO(width) + w_len + f_len;
 	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
 		(conv_spec->flags & FLAG_HASH))
 		res += 1;
@@ -88,14 +92,15 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	t_bigint		*whole;
 	t_bigint		*frac;
 	int				is_nan_inf;
-	int				spaces;
+	int				width;
 
 	nbr.val = read_long_doule(ap, conv_spec->length);
-	is_nan_inf = get_float(nbr, conv_spec, &whole, &frac);
-	spaces = get_spaces_len(conv_spec, whole, nbr.s.sign, is_nan_inf);
+	if ((is_nan_inf = get_float(nbr, conv_spec, &whole, &frac)) == -1)
+		return (-1);
+	width = get_width(conv_spec, whole, nbr.s.sign, is_nan_inf);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar((is_nan_inf == 0) && (conv_spec->flags & FLAG_ZERO)
-			? '0' : ' ', spaces);
+			? '0' : ' ', width);
 	if ((conv_spec->flags & FLAG_PLUS) || nbr.s.sign)
 		ft_putchar(nbr.s.sign ? '-' : '+');
 	if (is_nan_inf)
@@ -103,6 +108,6 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	else
 		print_float(conv_spec, whole, frac);
 	if ((conv_spec->flags & FLAG_MINUS))
-		ft_putnchar(' ', spaces);
-	return (get_printed_len(conv_spec, whole, frac, spaces));
+		ft_putnchar(' ', width);
+	return (get_printed_len(conv_spec, whole, frac, width));
 }

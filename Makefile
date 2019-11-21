@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
+#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/20 23:14:47 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/21 15:12:14 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,6 @@ LIBFTOBJ =	libft/ft_autoalloc.o \
 			libft/ft_strtrim.o \
 			libft/ft_tolower.o \
 			libft/ft_toupper.o \
-			libft/digit_len_base.o \
 			libft/ft_putunbr_base.o
 
 OBJ = $(SRC:.c=.o)

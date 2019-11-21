@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   conv_x.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 22:22:14 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/09/26 00:48:45 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/21 14:48:08 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long get_int(t_conv_spec *conv_spec, va_list *ap)
+long long	get_int(t_conv_spec *conv_spec, va_list *ap)
 {
 	long long ret;
 
@@ -25,18 +25,18 @@ long long get_int(t_conv_spec *conv_spec, va_list *ap)
 	return (ret);
 }
 
-int conv_x(t_conv_spec *conv_spec, va_list *ap)
-{	
+int	conv_x(t_conv_spec *conv_spec, va_list *ap)
+{
 	unsigned long long	hex_nbr;
-	int					nbr_len;	
+	int					nbr_len;
 	int					spaces;
 	int					zeros;
 
 	hex_nbr = get_int(conv_spec, ap);
-	if (conv_spec->is_pset && conv_spec->precision  == 0 && hex_nbr == 0)
+	if (conv_spec->is_pset && conv_spec->precision == 0 && hex_nbr == 0)
 		return (0);
-	nbr_len = digit_len_base(hex_nbr, 16);
-	spaces = get_spaces_len(conv_spec, 
+	nbr_len = ft_nbrlen_base(hex_nbr, 16);
+	spaces = get_spaces_len(conv_spec,
 		conv_spec->flags & FLAG_HASH ? 2 : 0, nbr_len);
 	zeros = get_zeros_len(conv_spec,
 		conv_spec->flags & FLAG_HASH ? 2 : 0, nbr_len);

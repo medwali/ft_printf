@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 17:10:42 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/19 10:50:51 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 16:02:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ t_bigint	*bigint_mult(t_bigint *a, t_bigint *b)
 	unsigned int	i;
 	unsigned int	j;
 
-	res = bigint_new(a->length + b->length);
+	if (a == NULL || b == NULL)
+		return (NULL);
+	if ((res = bigint_new(a->length + b->length)) == -1)
+		return (NULL);
 	i = 0;
 	while (i < b->length)
 	{

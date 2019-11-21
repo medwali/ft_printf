@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 20:41:59 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 19:29:05 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 15:15:15 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*ft_autoalloc(size_t size)
 	{
 		free(ptr);
 		ft_autofree_all();
-		exit(1);
+		return (-1);
 	}
 	node->address = ptr;
 	if (g_allocs == NULL)

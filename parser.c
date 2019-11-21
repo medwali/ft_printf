@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/19 20:17:14 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 14:24:44 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static void	parse_flags(t_conv_spec *conv_spec, char **conv)
 			conv_spec->flags |= FLAG_PLUS;
 		else if (**conv == '-')
 			conv_spec->flags |= FLAG_MINUS;
-		else if (**conv == '\'')
-			conv_spec->flags |= FLAG_QUOTE;
 		else
 			break ;
 		(*conv)++;

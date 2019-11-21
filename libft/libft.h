@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/20 23:21:00 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/21 14:35:05 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void			ft_putnchar(char c, int n);
 int				ft_nbrlen(__uint128_t unbr);
 int				ft_nbrlen_base(unsigned long long n, int base);
 int				ft_max(int nbr1, int nbr2);
+void			ft_putunbr_base(unsigned long long n, int base, int is_upper);
 typedef struct	s_alloc_list
 {
 	void				*address;
