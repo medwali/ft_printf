@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:30:53 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 15:35:56 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 16:22:24 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ t_bigint	*get_whole(unsigned long mantissa, int exp)
 		m = m << (exp - 63);
 	else
 		m = m << 64;
-	if ((bg_int = bigint_from_uint128(m)) == -1)
+	if ((bg_int = bigint_from_uint128(m)) == NULL)
 		return (-1);
 	if (exp >= 128)
-		if ((bg_int = bigint_mult(bg_int, bigint_power(2, exp - 127))) == -1)
+		if ((bg_int = bigint_mult(bg_int, bigint_power(2, exp - 127))) == NULL)
 			return (-1);
 	len = bg_int->length - 1;
 	while (bg_int->digits[len] == 0)

@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:32:01 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 15:36:44 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/21 16:22:00 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,17 +271,12 @@ static t_bigint const	g_exps[] = {
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 64}
 };
 
-t_bigint				*get_fraction(unsigned long mantissa, int exp)
+static t_bigint	*read_mantissa(unsigned long mantissa, int exp)
 {
 	t_bigint	*res;
-	t_bigint	*tmp;
 	int			i;
 	int			pow;
 
-	if (exp >= 63)
-		return (bigint_new(1));
-	if ((res = bigint_new(0)) == -1)
-		return (-1);
 	pow = exp >= 0 ? 62 - exp : 63;
 	i = 0;
 	while (pow >= 0)
@@ -292,6 +287,18 @@ t_bigint				*get_fraction(unsigned long mantissa, int exp)
 		pow--;
 		i++;
 	}
+}
+
+t_bigint				*get_fraction(unsigned long mantissa, int exp)
+{
+	t_bigint	*res;
+	t_bigint	*tmp;
+
+	if (exp >= 63)
+		return (bigint_new(1));
+	if ((res = bigint_new(0)) == -1)
+		return (-1);
+	res = read_mantissa(mantissa, exp);
 	while (*res->digits == 0 && res->length > 0)
 	{
 		res->length--;
