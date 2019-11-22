@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:18:31 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 16:48:30 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/22 16:57:22 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		increment_float(t_bigint **whole, t_bigint **frac, int precision)
 {
 	unsigned int	frac_part_length;
 	t_bigint		*added_number;
+
 	if (precision == 0)
 	{
 		if ((*whole = bigint_add(*whole, bigint_from_uint128(1))) == NULL)
