@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
+#    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/22 13:57:29 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/22 16:47:13 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ main: main.c $(NAME)
 	gcc -o main main.c $(NAME)
 
 clean:
-	rm -f $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJS)
+	rm -f $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 
 fclean: clean
 	rm -f $(NAME)
