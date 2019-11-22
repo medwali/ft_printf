@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 17:41:10 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 18:55:48 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int			conv_di(t_conv_spec *conv_spec, va_list *ap)
 		? 0 : ft_nbrlen(ABS(nbr));
 	spaces = get_spaces_len(conv_spec, nbr, nbr_len);
 	zeros = get_zeros_len(conv_spec, nbr, nbr_len);
-	zeros -= (conv_spec->flags & FLAG_SPACE) && nbr >= 0 && spaces <= 0 ? 1 : 0;
 	ret = pos_zero(spaces) + pos_zero(zeros) + nbr_len +
 		(nbr < 0 || (conv_spec->flags & FLAG_PLUS));
 	print_int(conv_spec, nbr, spaces, zeros);
