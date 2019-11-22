@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:55 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/22 13:02:19 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 17:04:08 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,18 @@ int			conv_o(t_conv_spec *conv_spec, va_list *ap)
 	zeros = get_zeros_len(conv_spec, 1, nbr_len);
 	spaces -= (conv_spec->flags & FLAG_HASH) && unbr && zeros < 0 ? 1 : 0;
 	zeros = (conv_spec->flags & FLAG_HASH) && unbr && zeros <= 0 ? 1 : zeros;
+	if ((unbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0))
+	{
+		spaces++;
+		nbr_len = 0;
+	}
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);
 	if (conv_spec->flags & FLAG_PLUS)
 		ft_putchar('+');
 	ft_putnchar('0', zeros);
 	if (!(unbr == 0 && conv_spec->is_pset == 1 && conv_spec->precision == 0))
-	{
 		ft_putunbr_base(unbr, 8, 0);
-		nbr_len = nbr_len == 0 ? 1 : nbr_len;
-	}
 	if (conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', spaces);
 	return (get_printed_len(conv_spec, nbr_len, spaces, zeros));
