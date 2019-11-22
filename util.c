@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 16:31:50 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 14:43:55 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 10:25:16 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,9 @@ int		is_in_str(int c, char *str)
 	return (0);
 }
 
-void	print_bits(__uint128_t nbr, int size)
+int	pos_zero(int number)
 {
-	while (size--)
-	{
-		if (((nbr >> size) & 1) == 0)
-			ft_putchar('0');
-		else
-			ft_putchar('1');
-	}
+	return (number < 0 ? 0 : number);
 }
 
 int		bit_is_set(unsigned long nbr, int index)

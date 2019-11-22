@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 17:10:59 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 09:47:49 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	print_float(t_conv_spec *conv_spec, t_bigint *whole, t_bigint *frac)
 		(conv_spec->flags & FLAG_HASH))
 		ft_putchar('.');
 	bigint_print(frac);
+	ft_putnchar('0', conv_spec->precision - frac->length);
 }
 
 static int	get_printed_len(t_conv_spec *conv_spec, t_bigint *whole,
@@ -79,7 +80,7 @@ static int	get_printed_len(t_conv_spec *conv_spec, t_bigint *whole,
 
 	w_len = whole == NULL ? 0 : whole->length;
 	f_len = frac == NULL ? 0 : frac->length;
-	res = POS_ZERO(width) + w_len + f_len;
+	res = pos_zero(width) + w_len + f_len;
 	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
 		(conv_spec->flags & FLAG_HASH))
 		res += 1;
@@ -98,11 +99,13 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	if ((is_nan_inf = get_float(nbr, conv_spec, &whole, &frac)) == -1)
 		return (-1);
 	width = get_width(conv_spec, whole, nbr.s.sign, is_nan_inf);
-	if ((conv_spec->flags & FLAG_MINUS) == 0)
-		ft_putnchar((is_nan_inf == 0) && (conv_spec->flags & FLAG_ZERO)
-			? '0' : ' ', width);
+	if ((!(conv_spec->flags & FLAG_MINUS) && (conv_spec->flags & FLAG_SPACE))
+		|| is_nan_inf > 0)
+		ft_putnchar(' ', width);
 	if ((conv_spec->flags & FLAG_PLUS) || nbr.s.sign)
 		ft_putchar(nbr.s.sign ? '-' : '+');
+	if (is_nan_inf == 0 && (conv_spec->flags & FLAG_ZERO))
+		ft_putnchar('0', width);
 	if (is_nan_inf)
 		ft_putstr(is_nan_inf == 1 ? "inf" : "nan");
 	else

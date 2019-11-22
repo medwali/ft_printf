@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 09:49:56 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/21 17:00:40 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 11:05:26 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ int		bigint_is_zero(t_bigint *bg_int)
 
 void	bigint_print(t_bigint *bg_int)
 {
-	int len;
+	char	*str;
+	int		len;
+	int		i;
 
 	if (bg_int == NULL)
 		return ;
+	str = (char *)ft_memalloc(bg_int->length);
 	len = bg_int->length - 1;
-	while (len >= 0)
+	i = 0;
+	while (i <= len)
 	{
-		ft_putchar(bg_int->digits[len] + 48);
-		len--;
+		str[i] = bg_int->digits[len - i] + 48;
+		i++;
 	}
+	write(1, str, len + 1);
+	ft_strdel(&str);
 }

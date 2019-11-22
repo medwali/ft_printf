@@ -6,11 +6,12 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 19:47:17 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 13:55:27 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static void	parse_flags(t_conv_spec *conv_spec, char **conv)
 {
@@ -49,6 +50,8 @@ static void	parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
 		conv_spec->width = va_arg(*ap, int);
 		(*conv)++;
 	}
+	if (conv_spec->width < 0)
+		conv_spec->width = 0;
 }
 
 static void	parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
@@ -70,6 +73,11 @@ static void	parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
 	{
 		conv_spec->precision = va_arg(*ap, int);
 		(*conv)++;
+	}
+	if (conv_spec->precision < 0)
+	{
+		conv_spec->precision = 0;
+		conv_spec->is_pset = 0;
 	}
 }
 
@@ -120,6 +128,7 @@ int			parse_conversion(char **conv_str, va_list *ap)
 		*conv_str = ++c_str;
 		return (apply_conv_function(&conv_spec, ap, *(c_str - 1)));
 	}
-	else
-		return (0);
+	write(1, *conv_str, 1);
+	(*conv_str)++;
+	return (1);
 }

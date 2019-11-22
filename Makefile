@@ -6,13 +6,13 @@
 #    By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/21 16:58:50 by ylagtab          ###   ########.fr        #
+#    Updated: 2019/11/22 13:57:29 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGsS = -Wall -Wextra -Werror
 
 CC = gcc
 

@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 04:21:25 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 14:45:50 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 13:50:08 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	conv_p(t_conv_spec *conv_spec, va_list *ap)
 	if (va_arg(ap2, long int) == 0)
 	{
 		if (conv_spec->width && (conv_spec->flags & FLAG_MINUS) == 0)
-			ft_putnchar(' ', conv_spec->width - 5);
-		write(1, "(nil)", 5);
+			ft_putnchar(' ', conv_spec->width - 3);
+		write(1, "0x0", 3);
 		if (conv_spec->width && conv_spec->flags & FLAG_MINUS)
-			ft_putnchar(' ', conv_spec->width - 5);
+			ft_putnchar(' ', conv_spec->width - 3);
 		va_end(ap2);
-		return (MAX(conv_spec->width, 5));
+		return (MAX(conv_spec->width, 3));
 	}
 	va_end(ap2);
 	conv_spec->length = L;

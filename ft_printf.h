@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:51:31 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 09:55:04 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define FLAG_MINUS 16U
 # define IS_DIGIT(x) '0' <= x && x <= '9'
 # define ABS(number) number > 0 ? number : (-1) * number
-# define POS_ZERO(number) number > 0 ? number : 0
 # define MAX(a, b) (a > b ? a : b)
 
 typedef	enum		e_length
@@ -73,7 +72,7 @@ long long			read_int(va_list *ap, t_length len);
 unsigned long long	read_uint(va_list *ap, t_length len);
 void				put_octal(unsigned long decimal);
 int					conv_f(t_conv_spec *conv_spec, va_list *ap);
-void				print_bits(__uint128_t nbr, int size);
+// void				print_bits(__uint128_t nbr, int size);
 t_bigint			*get_whole(unsigned long mantissa, int exp);
 t_bigint			*get_fraction(unsigned long mantissa, int exp);
 int					bit_is_set(unsigned long nbr, int index);
@@ -84,5 +83,6 @@ int					conv_p(t_conv_spec *conv_spec, va_list *ap);
 int					get_spaces_len(t_conv_spec *conv_spec, int nbr,
 	int nbr_len);
 int					get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len);
+int					pos_zero(int number);
 
 #endif

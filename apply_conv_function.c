@@ -6,11 +6,12 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 21:01:12 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:58:33 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 09:49:27 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
+#include <stdio.h>
 
 int	apply_conv_function(t_conv_spec *conv_spec, va_list *ap, int c)
 {

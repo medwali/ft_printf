@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 21:18:31 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 17:10:37 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 15:05:50 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		increment_float(t_bigint **whole, t_bigint **frac, int precision)
 {
 	unsigned int	frac_part_length;
 	t_bigint		*added_number;
-
+./
 	if (precision == 0)
 	{
 		if ((*whole = bigint_add(*whole, bigint_from_uint128(1))) == NULL)
@@ -47,13 +47,13 @@ int		round_float(t_bigint **whole, t_bigint **frac, int precis)
 	index = (*frac)->length - precis - 1;
 	if (index < 0)
 		return (0);
-	if ((*frac)->digits[index] > 5)
-		if ((increment_float(whole, frac, precis)) == -1)
-			return (-1);
-	if ((*frac)->digits[index] == 5 && ((precis == 0 && (*whole)->digits[0] % 2)
-		|| (precis != 0 && (*frac)->digits[index + 1] % 2)))
+	if ((*frac)->digits[index] > 5 && increment_float(whole, frac, precis) < 0)
+		return (-1);
+	if ((*frac)->digits[index] == 5)
 	{
-		if ((increment_float(whole, frac, precis)) == -1)
+		if (((precis == 0 && (*whole)->digits[0] % 2)
+			|| (precis != 0 && (*frac)->digits[index + 1] % 2))
+			&& (increment_float(whole, frac, precis) == -1))
 			return (-1);
 		else
 		{
