@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/22 16:47:13 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/22 18:44:28 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,5 +146,8 @@ conv_o: $(NAME)
 
 conv_f: $(NAME)
 	gcc $(CFLAGS) -o conv_f_test tests/conv_f.test.c $(NAME)
+conv_s: $(NAME)
+	gcc $(CFLAGS) -o conv_s_test tests/conv_s.test.c $(NAME)
+
 
 .PHONY: all fclean re clean

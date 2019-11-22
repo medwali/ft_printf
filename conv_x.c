@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv_x.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 22:22:14 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 13:34:52 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/22 18:10:09 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	conv_x(t_conv_spec *conv_spec, va_list *ap)
 	spaces -= conv_spec->flags & FLAG_HASH && hex_nbr ? 2 : 0;
 	zeros = get_zeros_len(conv_spec, 1, nbr_len);
 	zeros -= conv_spec->flags & FLAG_HASH && hex_nbr &&
-		((conv_spec->flags & FLAG_ZERO) && conv_spec->precision < nbr_len ) ? 2 : 0;
+((conv_spec->flags & FLAG_ZERO) && conv_spec->precision < nbr_len) ? 2 : 0;
 	(conv_spec->flags & FLAG_MINUS) == 0 ? ft_putnchar(' ', spaces) : 0;
 	prefix[0] = '0';
 	prefix[1] = conv_spec->conv_char;
