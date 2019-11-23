@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 16:55:01 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/23 17:32:12 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ long double			read_long_doule(va_list *ap, t_length len);
 int					round_float(t_bigint **whole, t_bigint **frac, int precis);
 int					conv_x(t_conv_spec *conv_spec, va_list *ap);
 int					conv_p(t_conv_spec *conv_spec, va_list *ap);
-int					get_spaces_len(t_conv_spec *conv_spec, int nbr,
-	int nbr_len);
-int					get_zeros_len(t_conv_spec *conv_spec, int nbr, int nbr_len);
 int					pos_zero(int number);
 
 #endif
