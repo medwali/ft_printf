@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 00:12:42 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 18:06:41 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/23 18:07:32 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	conv_s(t_conv_spec *conv_spec, va_list *ap)
 	char	*str;
 
 	str = va_arg(*ap, char *);
+	if (str == NULL)
+		str = "(null)";
 	str_len = ft_strlen(str);
 	str_len = conv_spec->is_pset && conv_spec->precision < str_len ?
 		conv_spec->precision : str_len;
