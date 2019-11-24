@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 16:55:01 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/24 13:44:39 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ typedef struct		s_conv_spec
 	t_length		length;
 	char			conv_char;
 }					t_conv_spec;
+
+typedef struct		s_specs
+{
+	__uint64_t	unbr;
+	int			sign;
+	int			unbr_len;
+	int			spaces;
+	int			zeros;
+}					t_specs;
 
 typedef union		u_extended_db
 {
