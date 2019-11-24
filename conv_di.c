@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:01 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/24 14:48:22 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/24 16:47:43 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static int	get_spaces(t_conv_spec *conv_spec, t_specs specs)
 	if (conv_spec->is_pset == 0 && (conv_spec->flags & FLAG_ZERO))
 		return (0);
 	ret = width - ft_max(precision, specs.unbr_len) -
-		(specs.sign ||
-		(conv_spec->flags & FLAG_PLUS) || (conv_spec->flags & FLAG_SPACE));
+		(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE)));
 	return (ret > 0 ? ret : 0);
 }
 
@@ -47,8 +46,7 @@ static int	get_zeros(t_conv_spec *conv_spec, t_specs specs)
 	if (conv_spec->flags & FLAG_ZERO)
 	{
 		ret = width - specs.unbr_len -
-			(specs.sign ||
-			(conv_spec->flags & FLAG_PLUS) || (conv_spec->flags & FLAG_SPACE));
+			(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE)));
 		return (ret > 0 ? ret : 0);
 	}
 	return (0);
@@ -59,11 +57,10 @@ static int	get_printed_len(t_conv_spec *conv_spec, t_specs specs)
 	if (conv_spec->is_pset && conv_spec->precision == 0 && specs.unbr == 0)
 		specs.unbr_len = 0;
 	return (specs.spaces + specs.zeros + specs.unbr_len +
-			(specs.sign ||
-			(conv_spec->flags & FLAG_PLUS) || (conv_spec->flags & FLAG_SPACE)));
+			(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE))));
 }
 
-void	read_unbr(va_list *ap, t_length len, t_specs *specs)
+static void	read_unbr(va_list *ap, t_length len, t_specs *specs)
 {
 	__int64_t	nbr;
 
