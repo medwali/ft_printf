@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/25 20:07:57 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/25 21:09:28 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,15 @@ int					conv_f(t_conv_spec *conv_spec, va_list *ap);
 t_bigint			*get_whole(unsigned long mantissa, int exp);
 t_bigint			*get_fraction(unsigned long mantissa, int exp);
 int					bit_is_set(unsigned long nbr, int index);
-long double			read_long_doule(va_list *ap, t_length len);
+long double			read_long_double(va_list *ap, t_length len);
 int					round_float(t_bigint **whole, t_bigint **frac, int precis);
 int					conv_x(t_conv_spec *conv_spec, va_list *ap);
 int					conv_p(t_conv_spec *conv_spec, va_list *ap);
 int					pos_zero(int number);
 int					print_float_prefix(t_conv_spec *conv_spec, int float_sign);
-int					check_inf_nan_zero(t_extended_dbl ldbl,
-						t_conv_spec *conv_spec, t_bigint **whole, t_bigint **frac)
+int					check_float_type(t_extended_dbl ldbl,
+						t_conv_spec *conv_spec,
+						t_bigint **whole, t_bigint **frac);
 
 
 
