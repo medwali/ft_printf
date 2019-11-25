@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:05 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/25 20:07:57 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/25 21:34:37 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ typedef union		u_extended_db
 		unsigned long	sign : 1;
 	}			s;
 }					t_extended_dbl;
+
+typedef struct		s_float_specs
+{
+	t_extended_dbl	ldbl;
+	t_bigint		*whole;
+	t_bigint		*frac;
+	int				float_type;
+}					t_float_specs;
 
 int					parse_conversion(char **conv_str, va_list *ap);
 int					apply_conv_function(t_conv_spec *conv_spec, va_list *ap,
