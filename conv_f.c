@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/25 21:34:35 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/25 22:12:18 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	get_width(t_conv_spec *conv_spec, t_bigint *whole,
 	width = conv_spec->width;
 	is_flag_hash = conv_spec->flags & FLAG_HASH ? 1 : 0;
 	len = 3;
-	if (is_nan_inf == FLOAT)
+	if (is_nan_inf == FLOAT || is_nan_inf == ZERO)
 		len = whole->length + precision + is_flag_hash;
 	width = width - len - (is_neg || (conv_spec->flags &
 			(FLAG_PLUS | FLAG_SPACE)));
@@ -99,6 +99,7 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	int				ret;
 
 	ret = 0;
+	conv_spec->precision = conv_spec->is_pset ? conv_spec->precision : 6;
 	ldbl.val = read_long_double(ap, conv_spec->length);
 	if ((float_type = fill_float_parts(ldbl, conv_spec, &whole, &frac)) == -1)
 		return (-1);
