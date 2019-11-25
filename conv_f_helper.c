@@ -6,13 +6,13 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:10:32 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/25 20:05:35 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/25 21:07:39 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check_inf_nan_zero(t_extended_dbl ldbl, t_conv_spec *conv_spec,
+int	check_float_type(t_extended_dbl ldbl, t_conv_spec *conv_spec,
 		t_bigint **whole, t_bigint **frac)
 {
 	if (ldbl.s.e == 0x7fff && bit_is_set(ldbl.s.m, 63) && (ldbl.s.m << 1) == 0)

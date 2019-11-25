@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:04:09 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/25 22:18:09 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/25 22:30:06 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,25 @@ static int	get_width(t_conv_spec *conv_spec, t_bigint *whole,
 	return (width > 0 ? width : 0);
 }
 
-static int	fill_float_parts(t_extended_dbl ldbl, t_conv_spec *conv_spec,
-	t_bigint **whole, t_bigint **frac)
+static int	fill_float_parts(t_conv_spec *conv_spec, t_float_specs *f_specs)
 {
 	int float_type;
+	int exp;
 
-	*whole = NULL;
-	*frac = NULL;
-	conv_spec->precision = conv_spec->is_pset ? conv_spec->precision : 6;
-	if ((float_type = check_float_type(ldbl, conv_spec, whole, frac))
+	exp = f_specs->ldbl.s.e - 16383;
+	f_specs->whole = NULL;
+	f_specs->frac = NULL;
+	if ((f_specs->float_type = check_float_type(conv_spec, f_specs))
 			!= FLOAT)
-		return (float_type);
-	if ((*whole = get_whole(ldbl.s.m, ldbl.s.e - 16383)) == NULL)
+		return (f_specs->float_type);
+	if ((f_specs->whole = get_whole(f_specs->ldbl.s.m, exp)) == NULL)
 		return (-1);
-	if ((*frac = get_fraction(ldbl.s.m, ldbl.s.e - 16383)) == NULL)
+	if ((f_specs->frac = get_fraction(f_specs->ldbl.s.m, exp)) == NULL)
 		return (-1);
-	if (conv_spec->precision < (int)(*frac)->length)
-		if (round_float(whole, frac, conv_spec->precision) == -1)
+	if (conv_spec->precision < (int)(f_specs->frac)->length)
+		if (round_float(f_specs->whole, f_specs->frac, conv_spec->precision) == -1)
 			return (-1);
-	while ((int)(*frac)->length > conv_spec->precision)
+	while ((int)(f_specs->frac)->length > conv_spec->precision)
 	{
 		(*frac)->length--;
 		(*frac)->digits++;
@@ -57,32 +57,18 @@ static int	fill_float_parts(t_extended_dbl ldbl, t_conv_spec *conv_spec,
 	return (FLOAT);
 }
 
-static void	print_float(t_conv_spec *conv_spec, t_bigint *whole, t_bigint *frac)
+static int	print_float(t_conv_spec *conv_spec, t_float_specs f_specs)
 {
-	bigint_print(whole);
+	int ret;
+
+	ret = 0;
+	ret += bigint_print(f_specs.whole);
 	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
 		(conv_spec->flags & FLAG_HASH))
-		ft_putchar('.');
-	bigint_print(frac);
-	ft_putnchar('0', conv_spec->precision - frac->length);
-}
-
-static int	get_printed_len(t_conv_spec *conv_spec, t_bigint *whole,
-	t_bigint *frac, int width)
-{
-	int res;
-	int	w_len;
-	int	f_len;
-
-	w_len = whole == NULL ? 0 : whole->length;
-	f_len = frac == NULL ? 0 : frac->length;
-	res = width + w_len + f_len;
-	if (conv_spec->is_pset == 0 || conv_spec->precision != 0 ||
-		(conv_spec->flags & FLAG_HASH))
-		res += 1;
-	if (conv_spec->precision - frac->length > 0)
-		res += conv_spec->precision - frac->length;
-	return (res);
+		ret += ft_putchar('.');
+	ret += bigint_print(f_specs.frac);
+	ret += ft_putnchar('0', conv_spec->precision - f_specs.frac->length);
+	return (ret);
 }
 
 int			conv_f(t_conv_spec *conv_spec, va_list *ap)
@@ -92,20 +78,21 @@ int			conv_f(t_conv_spec *conv_spec, va_list *ap)
 	int				ret;
 
 	ret = 0;
+	conv_spec->precision = conv_spec->is_pset ? conv_spec->precision : 6;
 	f_specs.ldbl.val = read_long_double(ap, conv_spec->length);
 	if ((f_specs.float_type = fill_float_parts(conv_spec, &f_specs)) == -1)
 		return (-1);
 	width = get_width(conv_spec, f_specs);
 	if ((!(conv_spec->flags & FLAG_MINUS) && !(conv_spec->flags & FLAG_ZERO)))
 		ret += ft_putnchar(' ', width);
-	print_float_prefix(conv_spec, f_specs.ldbl.s.sign);
+	ret += print_float_prefix(conv_spec, f_specs.ldbl.s.sign);
 	if (f_specs.float_type == 0 && (conv_spec->flags & FLAG_ZERO))
 		ret += ft_putnchar('0', width);
 	if (f_specs.float_type == INF || f_specs.float_type == NAN)
 		ret += ft_putstr(f_specs.float_type == INF ? "inf" : "nan");
 	else
-		print_float(conv_spec, f_specs);
+		ret += print_float(conv_spec, f_specs);
 	if ((conv_spec->flags & FLAG_MINUS))
 		ret += ft_putnchar(' ', width);
-	return (get_printed_len(conv_spec, f_specs));
+	return (ret);
 }

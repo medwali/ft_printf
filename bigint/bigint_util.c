@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 09:49:56 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/25 19:58:34 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/25 21:24:16 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		bigint_is_zero(t_bigint *bg_int)
 
 int		bigint_print(t_bigint *bg_int)
 {
-	char	*str;
 	int		len;
 	int		ret;
 
@@ -38,7 +37,7 @@ int		bigint_print(t_bigint *bg_int)
 	while (len >= 0)
 	{
 		ret += ft_putchar(bg_int->digits[len] + 48);
-		len++;
+		len--;
 	}
 	return (ret);
 }
