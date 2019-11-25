@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 14:35:05 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/25 20:29:30 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # define ALLOC_FREE 0
 # define ALLOC_ADD 0
+# define BUFF_SIZE 2048
 
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
@@ -102,9 +103,10 @@ typedef struct	s_alloc_list
 	struct s_alloc_list	*next;
 }				t_alloc_list;
 
-void			ft_autofree_all();
+void			ft_autofree_all(void);
 void			*ft_memdup(void *dst, const void *src, size_t n);
-void			ft_autofree_all();
 void			*ft_autoalloc(size_t size);
+int				ft_write_buff(char *str, size_t size);
+void			ft_flush_buff(void);
 
 #endif
