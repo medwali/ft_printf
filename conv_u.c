@@ -54,8 +54,7 @@ static int	get_printed_len(t_conv_spec *conv_spec, t_specs specs)
 {
 	if (conv_spec->is_pset && conv_spec->precision == 0 && specs.unbr == 0)
 		specs.unbr_len = 0;
-	return (specs.spaces + specs.zeros + specs.unbr_len +
-			(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE))));
+	return (specs.spaces + specs.zeros + specs.unbr_len);
 }
 
 static void	read_unbr(va_list *ap, t_length len, t_specs *specs)
