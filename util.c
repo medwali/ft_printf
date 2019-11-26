@@ -20,13 +20,7 @@ int		is_in_str(int c, char *str)
 	return (0);
 }
 
-int	pos_zero(int number)
-{
-	return (number < 0 ? 0 : number);
-}
-
 int		bit_is_set(unsigned long nbr, int index)
 {
 	return (((nbr >> index) & 1) == 1);
 }
-

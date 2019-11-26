@@ -100,7 +100,6 @@ long double			read_long_double(va_list *ap, t_length len);
 int					round_float(t_bigint **whole, t_bigint **frac, int precis);
 int					conv_x(t_conv_spec *conv_spec, va_list *ap);
 int					conv_p(t_conv_spec *conv_spec, va_list *ap);
-int					pos_zero(int number);
 int					print_float_prefix(t_conv_spec *conv_spec, int float_sign);
 int					check_float_type(t_conv_spec *conv_spec,
 						t_float_specs *f_specs);
