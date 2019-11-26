@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/22 13:55:27 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/26 14:24:45 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int			parse_conversion(char **conv_str, va_list *ap)
 		*conv_str = ++c_str;
 		return (apply_conv_function(&conv_spec, ap, *(c_str - 1)));
 	}
-	write(1, *conv_str, 1);
 	(*conv_str)++;
 	return (1);
 }
