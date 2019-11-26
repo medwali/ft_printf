@@ -13,26 +13,27 @@
 #include "libft.h"
 
 static char	g_buffer[BUFF_SIZE];
-static		g_buff_index;
+static int	g_buff_index;
 
-int ft_write_buff(char *str, size_t size)
+int			ft_write_buff(char *str, size_t size)
 {
 	int		i;
 
 	i = 0;
 	if (str == NULL)
-		return (NULL);
+		return (0);
 	while (i < size)
 	{
 		if (g_buff_index == BUFF_SIZE - 1)
-			flush_buffer();
+			ft_flush_buff();
 		g_buffer[g_buff_index] = str[i];
 		i++;
-		size++;
+		g_buff_index++;
 	}
+	return (size);
 }
 
-void	ft_flush_buff(void)
+void		ft_flush_buff(void)
 {
 	write(1, g_buffer, g_buff_index + 1);
 	g_buff_index = 0;
