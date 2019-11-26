@@ -19,30 +19,29 @@ static int	get_printed_len(int nbr_len, int spaces, int zeros)
 	return (spaces + zeros + nbr_len);
 }
 
-static int		get_spaces_len(t_conv_spec *conv_spec, int nbr_len)
+static int	get_spaces_len(t_conv_spec *conv_spec, int nbr_len)
 {
-	int width;
-	int precision;
+	int		width;
+	int		precision;
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
 	if (conv_spec->is_pset == 0 && (conv_spec->flags & FLAG_ZERO))
 		return (0);
-	return (width - ft_max(precision, nbr_len) -
-			(conv_spec->flags & FLAG_PLUS ? 1 : 0));
+	return (width - ft_max(precision, nbr_len));
 }
 
-static int		get_zeros_len(t_conv_spec *conv_spec, int nbr_len)
+static int	get_zeros_len(t_conv_spec *conv_spec, int nbr_len)
 {
-	int width;
-	int precision;
+	int		width;
+	int		precision;
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
 	if (conv_spec->is_pset)
 		return (precision - nbr_len);
 	if (conv_spec->flags & FLAG_ZERO)
-		return (width - nbr_len - (conv_spec->flags & FLAG_PLUS ? 1 : 0));
+		return (width - nbr_len);
 	return (0);
 }
 
