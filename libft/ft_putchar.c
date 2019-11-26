@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 05:38:59 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/10/07 13:14:21 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:57:55 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }

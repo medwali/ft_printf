@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	get_spaces(t_conv_spec *conv_spec, t_specs specs)
+static int	get_spaces(t_conv_spec *conv_spec, t_specs *specs)
 {
 	int width;
 	int precision;
@@ -21,16 +21,15 @@ static int	get_spaces(t_conv_spec *conv_spec, t_specs specs)
 
 	precision = conv_spec->precision;
 	width = conv_spec->width;
-	if (conv_spec->is_pset && conv_spec->precision == 0 && specs.unbr == 0)
-		specs.unbr_len = 0;
+	if (conv_spec->is_pset && conv_spec->precision == 0 && specs->unbr == 0)
+		specs->unbr_len = 0;
 	if (conv_spec->is_pset == 0 && (conv_spec->flags & FLAG_ZERO))
 		return (0);
-	ret = width - ft_max(precision, specs.unbr_len) -
-		(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE)));
+	ret = width - ft_max(precision, specs->unbr_len);
 	return (ret > 0 ? ret : 0);
 }
 
-static int	get_zeros(t_conv_spec *conv_spec, t_specs specs)
+static int	get_zeros(t_conv_spec *conv_spec, t_specs *specs)
 {
 	int width;
 	int precision;
@@ -40,13 +39,12 @@ static int	get_zeros(t_conv_spec *conv_spec, t_specs specs)
 	width = conv_spec->width;
 	if (conv_spec->is_pset)
 	{
-		ret = precision - specs.unbr_len;
+		ret = precision - specs->unbr_len;
 		return (ret > 0 ? ret : 0);
 	}
 	if (conv_spec->flags & FLAG_ZERO)
 	{
-		ret = width - specs.unbr_len -
-			(specs.sign || (conv_spec->flags & (FLAG_PLUS | FLAG_SPACE)));
+		ret = width - specs->unbr_len;
 		return (ret > 0 ? ret : 0);
 	}
 	return (0);
@@ -72,14 +70,10 @@ int			conv_u(t_conv_spec *conv_spec, va_list *ap)
 	t_specs specs;
 
 	read_unbr(ap, conv_spec->length, &specs);
-	specs.spaces = get_spaces(conv_spec, specs);
-	specs.zeros = get_zeros(conv_spec, specs);
+	specs.spaces = get_spaces(conv_spec, &specs);
+	specs.zeros = get_zeros(conv_spec, &specs);
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', specs.spaces);
-	if ((conv_spec->flags & FLAG_SPACE))
-		ft_putchar(' ');
-	if ((conv_spec->flags & FLAG_PLUS))
-		ft_putchar('+');
 	ft_putnchar('0', specs.zeros);
 	if (!(conv_spec->is_pset && conv_spec->precision == 0 && specs.unbr == 0))
 		ft_putunbr(specs.unbr);

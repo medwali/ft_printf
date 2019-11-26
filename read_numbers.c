@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:31:16 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/24 13:27:50 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/25 22:51:41 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ __uint64_t	read_uint(va_list *ap, t_length len)
 	return (va_arg(*ap, unsigned int));
 }
 
-long double	read_long_doule(va_list *ap, t_length len)
+long double	read_long_double(va_list *ap, t_length len)
 {
 	if (len == CAPITAL_L)
 		return (va_arg(*ap, long double));

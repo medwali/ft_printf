@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:28:52 by mel-idri          #+#    #+#             */
 /*   Updated: 2019/11/25 20:29:30 by ylagtab          ###   ########.fr       */
@@ -67,9 +67,9 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
-void			ft_putchar(char c);
-void			ft_putnchar(char c, int n);
-void			ft_putstr(char const *str);
+int				ft_putchar(char c);
+int				ft_putnchar(char c, int n);
+int				ft_putstr(char const *str);
 void			ft_putendl(char const *s);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
@@ -92,7 +92,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstsearch(t_list *lst, int (*f)(t_list *l));
 size_t			ft_strichr(const char *s, int c);
 void			ft_strrev(char *s);
-void			ft_putnchar(char c, int n);
 int				ft_nbrlen(__uint128_t unbr);
 int				ft_nbrlen_base(unsigned long long n, int base);
 int				ft_max(int nbr1, int nbr2);

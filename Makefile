@@ -6,13 +6,13 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/22 18:44:28 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/25 21:18:35 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGsS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 CC = gcc
 
@@ -22,6 +22,7 @@ SRC =	conv_di.c \
 		conv_c.c \
 		conv_s.c \
 		conv_f.c \
+		conv_f_helper.c \
 		conv_percenatge.c \
 		conv_x.c \
 		conv_p.c \

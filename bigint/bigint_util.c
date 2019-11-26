@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bigint_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 09:49:56 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/22 11:05:26 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/25 21:24:16 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,19 @@ int		bigint_is_zero(t_bigint *bg_int)
 	return (1);
 }
 
-void	bigint_print(t_bigint *bg_int)
+int		bigint_print(t_bigint *bg_int)
 {
-	char	*str;
 	int		len;
-	int		i;
+	int		ret;
 
+	ret = 0;
 	if (bg_int == NULL)
-		return ;
-	str = (char *)ft_memalloc(bg_int->length);
+		return (0);
 	len = bg_int->length - 1;
-	i = 0;
-	while (i <= len)
+	while (len >= 0)
 	{
-		str[i] = bg_int->digits[len - i] + 48;
-		i++;
+		ret += ft_putchar(bg_int->digits[len] + 48);
+		len--;
 	}
-	write(1, str, len + 1);
-	ft_strdel(&str);
+	return (ret);
 }
