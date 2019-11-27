@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 22:22:14 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/23 17:38:05 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:38:34 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			conv_x(t_conv_spec *conv_spec, va_list *ap)
 	if ((conv_spec->flags & FLAG_MINUS) == 0)
 		ft_putnchar(' ', spaces);
 	if (conv_spec->flags & FLAG_HASH && hex_nbr != 0)
-		write(1, (conv_spec->conv_char == 'x' ? "0x" : "0X"), 2);
+		ft_write_buff((conv_spec->conv_char == 'x' ? "0x" : "0X"), 2);
 	ft_putnchar('0', zeros);
 	if (!(conv_spec->is_pset && conv_spec->precision == 0 && hex_nbr == 0))
 		ft_putunbr_base(hex_nbr, 16, conv_spec->conv_char == 'X');

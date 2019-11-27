@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/25 21:18:35 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/27 18:10:15 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,8 @@ LIBFTOBJ =	libft/ft_autoalloc.o \
 			libft/ft_strtrim.o \
 			libft/ft_tolower.o \
 			libft/ft_toupper.o \
-			libft/ft_putunbr_base.o
+			libft/ft_putunbr_base.o \
+			libft/ft_write_buff.o
 
 OBJ = $(SRC:.c=.o)
 

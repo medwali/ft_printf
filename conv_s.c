@@ -6,7 +6,7 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 00:12:42 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/23 18:07:32 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:38:26 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	conv_s(t_conv_spec *conv_spec, va_list *ap)
 		conv_spec->precision : str_len;
 	if (conv_spec->width && !(conv_spec->flags & FLAG_MINUS))
 		ft_putnchar(' ', conv_spec->width - str_len);
-	write(1, str, str_len);
+	ft_write_buff(str, str_len);
 	if (conv_spec->width && conv_spec->flags & FLAG_MINUS)
 		ft_putnchar(' ', conv_spec->width - str_len);
 	return (conv_spec->width > str_len ? conv_spec->width : str_len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_write_buff.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:03:30 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/25 20:19:52 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/27 18:13:18 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	g_buff_index;
 
 int			ft_write_buff(char *str, size_t size)
 {
-	int		i;
+	size_t i;
 
 	i = 0;
 	if (str == NULL)
