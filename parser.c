@@ -6,7 +6,7 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/26 14:24:45 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/27 19:27:12 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,21 @@ static void	parse_width(t_conv_spec *conv_spec, char **conv, va_list *ap)
 		conv_spec->width = ft_atoi(*conv);
 		while (IS_DIGIT(**conv))
 			(*conv)++;
+		if (conv_spec->width < 0)
+			conv_spec->width = 0;
 	}
 	else if (**conv == '*')
 	{
 		conv_spec->width = va_arg(*ap, int);
 		(*conv)++;
+		if (conv_spec->width < 0)
+		{
+			conv_spec->width =
+				(conv_spec->width <= -2147483648) ? 0 : -conv_spec->width;
+			conv_spec->flags |= FLAG_MINUS;
+			conv_spec->flags &= ~FLAG_ZERO;
+		}
 	}
-	if (conv_spec->width < 0)
-		conv_spec->width = 0;
 }
 
 static void	parse_precision(t_conv_spec *conv_spec, char **conv, va_list *ap)
