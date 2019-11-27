@@ -6,13 +6,14 @@
 /*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 05:38:59 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/25 19:57:55 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/27 18:11:06 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 
 int	ft_putchar(char c)
 {
-	return (write(1, &c, 1));
+	return (ft_write_buff(&c, 1));
 }

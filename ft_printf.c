@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:03 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/21 16:48:42 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/27 18:37:21 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-int	ft_printf(char *format, ...)
+static void	clean_up(va_list *ap)
+{
+	va_end(*ap);
+	ft_autofree_all();
+	ft_flush_buff();
+}
+
+int			ft_printf(char *format, ...)
 {
 	va_list ap;
 	int		parse_ret;
@@ -37,8 +44,8 @@ int	ft_printf(char *format, ...)
 			continue;
 		}
 		else
-			ret += write(1, format++, 1);
+			ret += ft_write_buff(format++, 1);
 	}
-	va_end(ap);
+	clean_up(&ap);
 	return (parse_ret == -1 ? -1 : ret);
 }
