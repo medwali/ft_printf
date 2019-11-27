@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_write_buff.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:03:30 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/27 18:13:18 by mel-idri         ###   ########.fr       */
+/*   Updated: 2019/11/27 21:43:35 by ylagtab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			ft_write_buff(char *str, size_t size)
 		return (0);
 	while (i < size)
 	{
-		if (g_buff_index == BUFF_SIZE - 1)
+		if (g_buff_index == BUFF_SIZE)
 			ft_flush_buff();
 		g_buffer[g_buff_index] = str[i];
 		i++;
@@ -35,6 +35,6 @@ int			ft_write_buff(char *str, size_t size)
 
 void		ft_flush_buff(void)
 {
-	write(1, g_buffer, g_buff_index + 1);
+	write(1, g_buffer, g_buff_index);
 	g_buff_index = 0;
 }
