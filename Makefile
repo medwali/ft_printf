@@ -6,13 +6,13 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/28 16:32:55 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/28 20:10:01 by ylagtab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
@@ -128,6 +128,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
 
 .PHONY: all fclean re clean
