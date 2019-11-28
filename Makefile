@@ -6,7 +6,7 @@
 #    By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/20 21:20:45 by mel-idri          #+#    #+#              #
-#    Updated: 2019/11/27 18:10:15 by mel-idri         ###   ########.fr        #
+#    Updated: 2019/11/28 16:32:55 by mel-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,35 +121,13 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 	ar rc $(NAME) $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 
-main: main.c $(NAME)
-	gcc -o main main.c $(NAME)
-
 clean:
 	rm -f $(OBJ) $(LIBFTOBJ) $(BIGINT_OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f conv_d_test
-	rm -f conv_u_test
-	rm -f conv_o_test
-	rm -f conv_f_test
-	rm -f main
 
 re: fclean all
-
-conv_di: $(NAME)
-	gcc $(CFLAGS) -o conv_d_test tests/conv_di.test.c $(NAME)
-
-conv_u: $(NAME)
-	gcc $(CFLAGS) -o conv_u_test tests/conv_u.test.c $(NAME)
-
-conv_o: $(NAME)
-	gcc $(CFLAGS) -o conv_o_test tests/conv_o.test.c $(NAME)
-
-conv_f: $(NAME)
-	gcc $(CFLAGS) -o conv_f_test tests/conv_f.test.c $(NAME)
-conv_s: $(NAME)
-	gcc $(CFLAGS) -o conv_s_test tests/conv_s.test.c $(NAME)
 
 
 .PHONY: all fclean re clean

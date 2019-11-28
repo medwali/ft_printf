@@ -6,12 +6,11 @@
 /*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 15:44:55 by ylagtab           #+#    #+#             */
-/*   Updated: 2019/11/24 16:48:33 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/28 16:31:16 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static int	get_spaces(t_conv_spec *conv_spec, t_specs *specs)
 {

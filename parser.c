@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ylagtab <ylagtab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-idri <mel-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:20:06 by mel-idri          #+#    #+#             */
-/*   Updated: 2019/11/27 19:27:12 by ylagtab          ###   ########.fr       */
+/*   Updated: 2019/11/28 16:58:26 by mel-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static void	parse_flags(t_conv_spec *conv_spec, char **conv)
 {
@@ -135,6 +134,6 @@ int			parse_conversion(char **conv_str, va_list *ap)
 		*conv_str = ++c_str;
 		return (apply_conv_function(&conv_spec, ap, *(c_str - 1)));
 	}
-	(*conv_str)++;
-	return (1);
+	*conv_str = c_str;
+	return (0);
 }
